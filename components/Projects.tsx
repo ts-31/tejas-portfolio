@@ -95,7 +95,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
         ))}
       </div>
 
-      <div className="flex overflow-x-auto pb-8 gap-8 snap-x snap-mandatory scrollbar-hide">
+      <div className="flex overflow-x-auto pb-8 gap-8 snap-x snap-mandatory">
         {filteredProjects.map((project, index) => (
           <div
             key={index}
