@@ -15,20 +15,20 @@ const OpenSource: React.FC<OpenSourceProps> = ({ isDark }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* GSOC Card */}
         <div className={`md:col-span-2 rounded-lg border p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden group 
-            ${isDark 
-                ? 'border-primary bg-primary/5' 
-                : 'border-primary-dark/30 bg-white shadow-card'
-            }`}>
+            ${isDark
+            ? 'border-primary bg-primary/5'
+            : 'border-primary-dark/30 bg-white shadow-card'
+          }`}>
           <div className={`absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 blur-[50px] rounded-full 
              ${isDark ? 'bg-primary/20' : 'bg-primary/10'}
           `}></div>
-          
+
           <div className="flex-shrink-0 relative">
             <div className={`w-24 h-24 rounded-full border-2 flex items-center justify-center shadow-neon 
-                ${isDark 
-                    ? 'border-primary/50 bg-black' 
-                    : 'border-primary-dark/50 bg-gray-50'
-                }`}>
+                ${isDark
+                ? 'border-primary/50 bg-black'
+                : 'border-primary-dark/50 bg-gray-50'
+              }`}>
               <span className={`material-symbols-outlined text-[48px] animate-pulse ${isDark ? 'text-primary' : 'text-primary-dark'}`}>
                 code_blocks
               </span>
@@ -42,12 +42,20 @@ const OpenSource: React.FC<OpenSourceProps> = ({ isDark }) => {
                 Google Summer of Code 2025
               </h3>
             </div>
+            <p className={`text-base font-semibold mb-1 ${isDark ? 'text-primary' : 'text-primary-dark'}`}>
+              OpenAFS — Distributed File System
+            </p>
             <p className={`text-sm leading-relaxed max-w-xl ${isDark ? 'text-slate-300' : 'text-text-muted-light'}`}>
-              Selected as a Contributor for a major open-source organization. Working on optimizing kernel scheduling algorithms and enhancing system monitor performance.
+              Built a production-grade GNOME Shell extension for managing distributed file systems in academic and research environments. Implemented async, non-blocking UI flows for system-level operations, designed modular components for live status indicators, and shipped features used by real Linux users including live updates, notifications, and failure handling.
             </p>
             <div className="flex gap-4 mt-2 justify-center md:justify-start">
-              <a href="#" className={`text-sm font-mono flex items-center gap-1 font-bold hover:underline ${isDark ? 'text-primary hover:text-white' : 'text-primary-dark hover:text-text-main-light'}`}>
-                <span>view_proposal.pdf</span> 
+              <a
+                href="https://summerofcode.withgoogle.com/programs/2025/projects/dS7QYyMI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-sm font-mono flex items-center gap-1 font-bold hover:underline ${isDark ? 'text-primary hover:text-white' : 'text-primary-dark hover:text-text-main-light'}`}
+              >
+                <span>view_project</span>
                 <span className="material-symbols-outlined !text-[14px]">arrow_outward</span>
               </a>
             </div>
@@ -56,10 +64,10 @@ const OpenSource: React.FC<OpenSourceProps> = ({ isDark }) => {
 
         {/* GitHub Stats Card */}
         <div className={`rounded-lg border p-6 flex flex-col justify-center gap-4 transition-colors 
-            ${isDark 
-                ? 'border-zinc-800 bg-zinc-900/50 hover:border-primary/50' 
-                : 'border-gray-300 bg-white hover:border-primary-dark/50 shadow-card'
-            }`}>
+            ${isDark
+            ? 'border-zinc-800 bg-zinc-900/50 hover:border-primary/50'
+            : 'border-gray-300 bg-white hover:border-primary-dark/50 shadow-card'
+          }`}>
           <h4 className={`font-mono text-sm uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-text-muted-light'}`}>
             GitHub Contributions
           </h4>
