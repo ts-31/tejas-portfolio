@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface TerminalProps {
-    isDark: boolean;
+  isDark: boolean;
 }
 
 const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
@@ -29,19 +29,25 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
               <span>tejas@linux-box:~$</span>
               <span className={isDark ? 'text-white' : 'text-text-main-light font-normal'}>neofetch</span>
             </div>
-            
+
             <div className="pl-0 md:pl-4 flex flex-col md:flex-row gap-6 pt-2">
-              <div className={`${isDark ? 'text-primary' : 'text-primary-dark font-bold'} hidden sm:block whitespace-pre text-[10px] leading-[10px] md:text-xs`}>
-{`       .---.
-      /     \\
-      | (@) |
-      \\     /
-       \`---'
-     __{   }__
-    (  \`---'  )
-     \`-------'`}
+              <div className="hidden sm:block">
+                <div className="relative w-32 h-32">
+                  <img
+                    src="/img1.png"
+                    alt="Profile"
+                    className={`absolute inset-0 w-full h-full rounded-lg object-cover shadow-md transition-all duration-500 ease-in-out transform ${isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                      }`}
+                  />
+                  <img
+                    src="/img2.png"
+                    alt="Profile"
+                    className={`absolute inset-0 w-full h-full rounded-lg object-cover shadow-md transition-all duration-500 ease-in-out transform ${!isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                      }`}
+                  />
+                </div>
               </div>
-              
+
               <div className={`border-l-0 md:border-l-2 border-primary/20 pl-0 md:pl-4 ${isDark ? 'text-slate-300' : 'text-text-muted-light'}`}>
                 <div className="grid grid-cols-[100px_1fr] gap-x-2 gap-y-1">
                   <span className={`${isDark ? 'text-primary' : 'text-primary-dark'} font-bold`}>OS</span> <span>Arch Linux x86_64</span>
@@ -61,29 +67,29 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
               <span>tejas@linux-box:~$</span>
               <span className={isDark ? 'text-white' : 'text-text-main-light font-normal'}>ls ./skills -la</span>
             </div>
-            
+
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 pt-2">
-               {[
-                 { name: 'MERN', icon: 'layers' },
-                 { name: 'Python', icon: 'terminal' },
-                 { name: 'Linux', icon: 'settings_system_daydream' },
-                 { name: 'React', icon: 'data_object' },
-                 { name: 'Java', icon: 'coffee' }
-               ].map((skill) => (
-                 <div key={skill.name} className={`group flex flex-col items-center justify-center gap-2 rounded-sm border p-3 transition-colors cursor-default
-                    ${isDark 
-                        ? 'bg-zinc-900 border-zinc-800 hover:border-primary hover:bg-primary/10' 
-                        : 'bg-white border-gray-300 hover:border-primary-dark hover:bg-primary/10 shadow-sm'
-                    }
+              {[
+                { name: 'MERN', icon: 'layers' },
+                { name: 'Python', icon: 'terminal' },
+                { name: 'Linux', icon: 'settings_system_daydream' },
+                { name: 'React', icon: 'data_object' },
+                { name: 'Java', icon: 'coffee' }
+              ].map((skill) => (
+                <div key={skill.name} className={`group flex flex-col items-center justify-center gap-2 rounded-sm border p-3 transition-colors cursor-default
+                    ${isDark
+                    ? 'bg-zinc-900 border-zinc-800 hover:border-primary hover:bg-primary/10'
+                    : 'bg-white border-gray-300 hover:border-primary-dark hover:bg-primary/10 shadow-sm'
+                  }
                  `}>
-                    <span className={`material-symbols-outlined group-hover:scale-110 transition-transform text-[28px] ${isDark ? 'text-primary' : 'text-primary-dark'}`}>
-                        {skill.icon}
-                    </span>
-                    <span className={`text-xs font-bold ${isDark ? 'text-slate-300' : 'text-text-main-light'}`}>
-                        {skill.name}
-                    </span>
-                 </div>
-               ))}
+                  <span className={`material-symbols-outlined group-hover:scale-110 transition-transform text-[28px] ${isDark ? 'text-primary' : 'text-primary-dark'}`}>
+                    {skill.icon}
+                  </span>
+                  <span className={`text-xs font-bold ${isDark ? 'text-slate-300' : 'text-text-main-light'}`}>
+                    {skill.name}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
