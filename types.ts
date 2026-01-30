@@ -4,6 +4,8 @@ export interface Project {
   image: string;
   tags: string[];
   category: 'web' | 'backend' | 'open-source' | 'gsoc' | 'all';
+  github: string;
+  live?: string;
 }
 
 export interface Skill {
