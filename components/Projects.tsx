@@ -95,11 +95,11 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="flex overflow-x-auto pb-8 gap-8 snap-x snap-mandatory scrollbar-hide">
         {filteredProjects.map((project, index) => (
           <div
             key={index}
-            className={`group relative rounded-lg border overflow-hidden transition-all duration-300 
+            className={`flex-none w-[300px] md:w-[400px] snap-center group relative rounded-lg border overflow-hidden transition-all duration-300 
                 ${isDark
                 ? 'bg-card-dark border-zinc-800 hover:border-primary hover:shadow-neon-hover'
                 : 'bg-card-light border-gray-300 hover:border-primary-dark hover:shadow-card'
@@ -114,7 +114,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
               <div className={`absolute inset-0 bg-gradient-to-t ${isDark ? 'from-black to-transparent opacity-80' : 'from-gray-900/50 to-transparent opacity-60'}`}></div>
             </div>
 
-            <div className={`p-5 relative z-10 -mt-10 rounded-t-xl ${isDark ? '' : 'bg-white border-t border-gray-100'}`}>
+            <div className={`p-5 relative z-10 -mt-10 rounded-t-xl flex flex-col h-[calc(100%-aspect-video)] ${isDark ? '' : 'bg-white border-t border-gray-100'}`}>
               <div className="flex justify-between items-end mb-2">
                 <h3 className={`text-xl font-bold transition-colors ${isDark ? 'text-white group-hover:text-primary' : 'text-text-main-light group-hover:text-primary-dark'}`}>
                   {project.title}
@@ -146,10 +146,10 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
                   )}
                 </div>
               </div>
-              <p className={`text-sm mb-4 ${isDark ? 'text-slate-400' : 'text-text-muted-light'}`}>
+              <p className={`text-sm mb-4 flex-grow ${isDark ? 'text-slate-400' : 'text-text-muted-light'}`}>
                 {project.description}
               </p>
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex gap-2 flex-wrap mt-auto">
                 {project.tags.map(tag => (
                   <span key={tag} className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded border 
                     ${isDark
