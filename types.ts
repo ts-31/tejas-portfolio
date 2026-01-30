@@ -3,7 +3,7 @@ export interface Project {
   description: string;
   image: string;
   tags: string[];
-  category: 'web' | 'backend' | 'open-source' | 'gsoc' | 'all';
+  category: 'web' | 'backend' | 'open-source' | 'all';
   github: string;
   live?: string;
 }

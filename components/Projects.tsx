@@ -55,14 +55,22 @@ const projectsData: Project[] = [
     description: 'A GNOME Shell extension to manage the OpenAFS client on Linux desktops. Features a GUI for starting/stopping the client, toggling autostart, and real-time status updates.',
     image: '/gnome-shell-extension-openafs.png',
     tags: ['GNOME Shell', 'GJS', 'OpenAFS', 'Linux'],
-    category: 'gsoc',
+    category: 'open-source',
     github: 'https://github.com/openafs-contrib/gnome-shell-extension-openafs',
   },
 ];
 
 const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
   const [activeFilter, setActiveFilter] = useState('All');
-  const filters = ['All', 'Web', 'Backend', 'Open Source', 'GSOC'];
+  const filters = ['All', 'Web', 'Backend', 'Open Source'];
+
+  const filteredProjects = projectsData.filter(project => {
+    if (activeFilter === 'All') return true;
+    if (activeFilter === 'Web') return project.category === 'web';
+    if (activeFilter === 'Backend') return project.category === 'backend';
+    if (activeFilter === 'Open Source') return project.category === 'open-source';
+    return false;
+  });
 
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-16 relative z-10" id="projects">
@@ -88,7 +96,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projectsData.map((project, index) => (
+        {filteredProjects.map((project, index) => (
           <div
             key={index}
             className={`group relative rounded-lg border overflow-hidden transition-all duration-300 
