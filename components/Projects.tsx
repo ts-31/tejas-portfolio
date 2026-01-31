@@ -116,6 +116,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
         {filteredProjects.map((project, index) => (
           <div
             key={index}
+            id={`project-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
             className={`flex-none w-[340px] md:w-[400px] snap-center group relative rounded-lg border overflow-hidden transition-all duration-300
               ${isDark
                 ? 'bg-card-dark border-zinc-800 hover:border-primary hover:shadow-neon-hover'

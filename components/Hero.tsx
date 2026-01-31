@@ -27,7 +27,7 @@ const Hero: React.FC<HeroProps> = ({ isDark }) => {
             <span className={`relative inline-flex rounded-full h-2 w-2 ${isDark ? 'bg-primary' : 'bg-primary-dark'}`}></span>
           </span>
           <h2 className={`text-xs md:text-sm font-medium tracking-wide uppercase font-mono ${isDark ? 'text-primary' : 'text-primary-dark'}`}>
-            Open Source Developer | GSOC 2025 | Linux Enthusiast
+            Open Source Developer | GSOC 2025 | Full-Stack Dev
           </h2>
         </div>
       </div>

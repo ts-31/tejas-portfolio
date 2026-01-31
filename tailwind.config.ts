@@ -37,7 +37,7 @@ const config: Config = {
                 "card": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
             },
             animation: {
-                'blink': 'blink 1s step-end infinite',
+                'blink': 'blink 0.8s step-end infinite',
             },
             keyframes: {
                 blink: {
