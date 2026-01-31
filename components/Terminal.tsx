@@ -204,6 +204,7 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [currentInput, setCurrentInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isFocused, setIsFocused] = useState(true); // Auto-focus on load
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const terminalContentRef = useRef<HTMLDivElement>(null);
@@ -216,6 +217,9 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
       { command: 'neofetch', type: 'neofetch' },
       { command: 'skills', type: 'skills' }
     ]);
+
+    // Auto-focus input on mount
+    inputRef.current?.focus();
 
     // Listener for Navbar Event
     const handleExecuteResume = () => {
@@ -234,7 +238,9 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
     };
 
     window.addEventListener('execute-resume', handleExecuteResume);
-    return () => window.removeEventListener('execute-resume', handleExecuteResume);
+    return () => {
+      window.removeEventListener('execute-resume', handleExecuteResume);
+    };
   }, []);
 
   useEffect(() => {
@@ -388,6 +394,8 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
                 value={currentInput}
                 onChange={(e) => !isTyping && setCurrentInput(e.target.value)}
                 onKeyDown={handleKeyDown}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
                 readOnly={isTyping}
                 className={`w-full bg-transparent outline-none border-0 ring-0 focus:ring-0 focus:outline-none focus-visible:outline-none caret-transparent cursor-default ${isDark ? 'text-white' : 'text-text-main-light'}`}
                 style={{
@@ -401,7 +409,7 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
                 autoComplete="off"
               />
               <span
-                className={`absolute pointer-events-none w-2.5 h-5 animate-blink ${isDark ? 'bg-primary' : 'bg-primary-dark'}`}
+                className={`absolute pointer-events-none w-2.5 h-5 ${isFocused ? 'animate-blink' : 'opacity-0'} ${isDark ? 'bg-primary' : 'bg-primary-dark'}`}
                 style={{
                   left: `calc(${currentInput.length}ch)`,
                   top: '50%',
