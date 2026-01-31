@@ -180,7 +180,7 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
       type = 'projects';
     } else if (trimmedCmd === 'open source' || trimmedCmd === 'cd ./open_source') {
       type = 'opensource';
-    } else if (trimmedCmd === 'socials' || trimmedCmd === 'contact' || trimmedCmd === 'ls ./socials') {
+    } else if (['socials', 'social', 'contact', 'contacts', 'ls ./socials'].includes(trimmedCmd)) {
       type = 'socials';
     } else if (trimmedCmd === 'help') {
       type = 'help';
