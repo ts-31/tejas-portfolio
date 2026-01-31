@@ -103,9 +103,9 @@ const OpenSourceOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
 
 const SocialsOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
   <div className={`pl-0 font-mono ${isDark ? 'text-slate-300' : 'text-text-main-light'}`}>
-    <div>LinkedIn → <a href="https://www.linkedin.com/in/tejas-266ba7364" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-primary hover:underline' : 'text-primary-dark hover:underline'}`}>https://www.linkedin.com/in/tejas-266ba7364</a></div>
-    <div>GitHub   → <a href="https://github.com/ts-31" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-primary hover:underline' : 'text-primary-dark hover:underline'}`}>https://github.com/ts-31</a></div>
-    <div>X        → <a href="https://x.com/_Tejas_03" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-primary hover:underline' : 'text-primary-dark hover:underline'}`}>https://x.com/_Tejas_03</a></div>
+    <div>LinkedIn → <a href="https://www.linkedin.com/in/tejas-266ba7364" onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-primary hover:underline' : 'text-primary-dark hover:underline'}`}>https://www.linkedin.com/in/tejas-266ba7364</a></div>
+    <div>GitHub   → <a href="https://github.com/ts-31" onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-primary hover:underline' : 'text-primary-dark hover:underline'}`}>https://github.com/ts-31</a></div>
+    <div>X        → <a href="https://x.com/_Tejas_03" onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-primary hover:underline' : 'text-primary-dark hover:underline'}`}>https://x.com/_Tejas_03</a></div>
   </div>
 );
 
@@ -207,6 +207,9 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
   };
 
   const focusInput = (e?: React.MouseEvent) => {
+    // Don't focus if clicking a link
+    if (e?.target instanceof HTMLAnchorElement) return;
+
     e?.preventDefault();
     inputRef.current?.focus();
   };
