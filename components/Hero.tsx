@@ -7,13 +7,13 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ isDark }) => {
   return (
-    <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-16 md:py-24 flex flex-col gap-10 items-center">
+    <div className="relative z-10 w-full max-w-7xl mx-auto px-4 pt-8 pb-16 md:pt-12 md:pb-24 flex flex-col gap-10 items-center">
       <div className="text-center space-y-6 w-full">
-        <h1 
-            className={`text-3xl sm:text-5xl md:text-6xl lg:text-[5.5rem] leading-none font-silkscreen font-normal tracking-tight bg-clip-text uppercase whitespace-nowrap overflow-visible
-            ${isDark 
-                ? 'bg-gradient-to-r from-[#bce6fa] to-[#e8eaed] text-transparent drop-shadow-[0_0_20px_rgba(188,230,250,0.4)]' 
-                : 'text-text-main-light drop-shadow-sm'
+        <h1
+          className={`text-3xl sm:text-5xl md:text-6xl lg:text-[5.5rem] leading-none font-silkscreen font-normal tracking-tight bg-clip-text uppercase whitespace-nowrap overflow-visible
+            ${isDark
+              ? 'bg-gradient-to-r from-[#bce6fa] to-[#e8eaed] text-transparent drop-shadow-[0_0_20px_rgba(188,230,250,0.4)]'
+              : 'text-text-main-light drop-shadow-sm'
             }`}
         >
           TEJAS SONAWANE
