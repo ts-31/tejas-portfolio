@@ -3,7 +3,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
     title: "Tejas Sonawane Portfolio",
-    description: "Portfolio of Tejas Sonawane",
+    description: "Portfolio of Tejas Sonawane - Full Stack Developer & GSoC 2025 Contributor",
+    openGraph: {
+        title: 'Tejas Sonawane | Open Source Developer',
+        description: 'GSoC 2025 Contributor & Full Stack Developer Portfolio',
+        images: ['/og-image.jpg'],
+        type: 'website',
+    },
 };
 
 export default function RootLayout({

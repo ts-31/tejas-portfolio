@@ -94,9 +94,13 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
             </span>
           </button>
 
-          <button className="hidden md:flex cursor-pointer items-center justify-center rounded-sm border border-primary-dark dark:border-primary bg-primary/10 px-4 py-1.5 text-xs font-bold text-primary-dark dark:text-primary hover:bg-primary hover:text-black transition-all shadow-[0_0_10px_rgba(57,255,20,0.15)] hover:shadow-neon font-mono">
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('execute-resume'))}
+            className="hidden md:flex cursor-pointer items-center justify-center rounded-sm border border-primary-dark dark:border-primary bg-primary/10 px-4 py-1.5 text-xs font-bold text-primary-dark dark:text-primary hover:bg-primary hover:text-black transition-all shadow-[0_0_10px_rgba(57,255,20,0.15)] hover:shadow-neon font-mono"
+          >
             EXECUTE_RESUME.sh
           </button>
+
 
           <button
             className="md:hidden text-text-main-light dark:text-white hover:text-primary-dark dark:hover:text-primary"
@@ -121,9 +125,16 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
               {link.name}
             </a>
           ))}
-          <button className="w-full mt-2 cursor-pointer items-center justify-center rounded-sm border border-primary-dark dark:border-primary bg-primary/10 px-4 py-2 text-xs font-bold text-primary-dark dark:text-primary hover:bg-primary hover:text-black transition-all shadow-neon font-mono">
+          <button
+            onClick={() => {
+              setIsMenuOpen(false);
+              window.dispatchEvent(new CustomEvent('execute-resume'));
+            }}
+            className="w-full mt-2 cursor-pointer items-center justify-center rounded-sm border border-primary-dark dark:border-primary bg-primary/10 px-4 py-2 text-xs font-bold text-primary-dark dark:text-primary hover:bg-primary hover:text-black transition-all shadow-neon font-mono"
+          >
             EXECUTE_RESUME.sh
           </button>
+
         </div>
       )}
     </header>
