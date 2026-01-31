@@ -1,10 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface OpenSourceProps {
   isDark: boolean;
 }
 
+interface GitHubData {
+  total: {
+    [key: string]: number;
+  };
+  contributions: Array<{
+    date: string;
+    count: number;
+    level: number;
+  }>;
+}
+
 const OpenSource: React.FC<OpenSourceProps> = ({ isDark }) => {
+  const [githubData, setGithubData] = useState<GitHubData | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number>(2026);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchGitHubData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/github');
+        if (!response.ok) throw new Error('Failed to fetch GitHub data');
+        const data = await response.json();
+        setGithubData(data);
+      } catch (error) {
+        console.error('Error fetching GitHub data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchGitHubData();
+  }, []);
+
+  const years = githubData ? Object.keys(githubData.total).map(Number).sort((a, b) => b - a) : [2026, 2025, 2024];
+  const currentCount = githubData?.total[selectedYear.toString()] || 0;
+
   return (
     <section className="w-full max-w-7xl mx-auto px-4 pb-24 relative z-10" id="gsoc">
       <div className="flex items-center gap-4 mb-10">
@@ -68,20 +104,42 @@ const OpenSource: React.FC<OpenSourceProps> = ({ isDark }) => {
             ? 'border-zinc-800 bg-zinc-900/50 hover:border-primary/50'
             : 'border-gray-300 bg-white hover:border-primary-dark/50 shadow-card'
           }`}>
-          <h4 className={`font-mono text-sm uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-text-muted-light'}`}>
-            GitHub Contributions
-          </h4>
+          <div className="flex justify-between items-start">
+            <h4 className={`font-mono text-sm uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-text-muted-light'}`}>
+              GitHub Contributions
+            </h4>
+            <div className="flex gap-1">
+              {years.slice(0, 3).map(year => (
+                <button
+                  key={year}
+                  onClick={() => setSelectedYear(year)}
+                  className={`text-[10px] px-1.5 py-0.5 rounded font-mono transition-colors ${selectedYear === year
+                      ? (isDark ? 'bg-primary text-black font-bold' : 'bg-primary-dark text-white font-bold')
+                      : (isDark ? 'bg-zinc-800 text-slate-400 hover:text-white' : 'bg-gray-100 text-text-muted-light hover:text-text-main-light')
+                    }`}
+                >
+                  {year}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="flex items-end gap-2">
-            <span className={`text-4xl font-bold ${isDark ? 'text-white' : 'text-text-main-light'}`}>450+</span>
-            <span className={`text-sm mb-1.5 font-mono ${isDark ? 'text-primary' : 'text-primary-dark'}`}>commits in 2024</span>
+            <span className={`text-4xl font-bold ${isDark ? 'text-white' : 'text-text-main-light'}`}>
+              {isLoading ? '...' : currentCount}
+            </span>
+            <span className={`text-sm mb-1.5 font-mono ${isDark ? 'text-primary' : 'text-primary-dark'}`}>
+              contributions in {selectedYear}
+            </span>
           </div>
           <div className={`h-2 w-full rounded-full overflow-hidden ${isDark ? 'bg-zinc-800' : 'bg-gray-200'}`}>
-            <div className={`h-full w-[85%] rounded-full shadow-[0_0_10px_rgba(57,255,20,0.5)] ${isDark ? 'bg-primary' : 'bg-primary-dark'}`}></div>
+            <div
+              className={`h-full rounded-full shadow-[0_0_10px_rgba(57,255,20,0.5)] transition-all duration-500 ${isDark ? 'bg-primary' : 'bg-primary-dark'}`}
+              style={{ width: `${Math.min(100, (currentCount / 500) * 100)}%` }}
+            ></div>
           </div>
-          <div className="flex gap-2 mt-2">
-            <span className={`text-xs px-2 py-1 rounded ${isDark ? 'bg-zinc-800 text-slate-400' : 'bg-gray-100 text-text-muted-light'}`}>Linux Kernel</span>
-            <span className={`text-xs px-2 py-1 rounded ${isDark ? 'bg-zinc-800 text-slate-400' : 'bg-gray-100 text-text-muted-light'}`}>Mozilla</span>
-          </div>
+          <p className={`text-[10px] font-mono ${isDark ? 'text-slate-500' : 'text-text-muted-light'}`}>
+            Real-time data from @ts-31
+          </p>
         </div>
       </div>
     </section>
