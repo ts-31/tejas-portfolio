@@ -200,6 +200,8 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const terminalContentRef = useRef<HTMLDivElement>(null);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // Initial commands
     setHistory([
@@ -209,6 +211,17 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
 
     // Listener for Navbar Event
     const handleExecuteResume = () => {
+      // Scroll to terminal with offset for navbar
+      if (containerRef.current) {
+        const navbarHeight = 72; // 64px navbar + 20px padding
+        const elementPosition = containerRef.current.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - navbarHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
       runStory();
     };
 
@@ -319,7 +332,10 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto transform hover:scale-[1.005] transition-transform duration-300">
+    <div
+      ref={containerRef}
+      className="w-full max-w-4xl mx-auto transform hover:scale-[1.005] transition-transform duration-300"
+    >
       <div className={`rounded-lg border ${isDark ? 'border-primary/50 bg-black/80 shadow-neon' : 'border-primary/30 bg-terminal-light shadow-lg'} backdrop-blur-xl overflow-hidden flex flex-col transition-colors duration-300`}>
         {/* Terminal Header */}
         <div className={`flex items-center justify-between px-4 py-2 border-b border-primary/20 ${isDark ? 'bg-primary/5' : 'bg-gray-200/50'}`}>
