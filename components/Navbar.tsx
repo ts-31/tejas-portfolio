@@ -59,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-primary/20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm transition-colors duration-300">
+    <header className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-primary/20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm transition-colors duration-300">
       <div className="flex h-16 items-center justify-between px-4 md:px-8 max-w-7xl mx-auto">
         <div className="flex items-center gap-3">
           <span className="text-primary-dark dark:text-primary material-symbols-outlined !text-[24px]">terminal</span>

@@ -29,7 +29,7 @@ export default function Home() {
         <div className="min-h-screen flex flex-col transition-colors duration-300 bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-body overflow-x-hidden">
             <Navbar isDark={isDark} toggleTheme={toggleTheme} />
 
-            <main className="flex-grow flex flex-col items-center relative w-full">
+            <main className="flex-grow flex flex-col items-center relative w-full pt-16">
                 {/* Background Grid Pattern */}
                 <div
                     className="fixed inset-0 z-0 pointer-events-none opacity-5 dark:opacity-20 transition-opacity duration-300"
