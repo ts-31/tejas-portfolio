@@ -338,7 +338,7 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
         {/* Terminal Content */}
         <div
           ref={terminalContentRef}
-          className={`p-6 font-mono text-sm md:text-base leading-relaxed space-y-4 h-[500px] overflow-y-auto flex flex-col ${isDark ? 'text-slate-300' : 'text-text-main-light'}`}
+          className={`p-6 font-mono text-sm md:text-base leading-relaxed space-y-4 h-[475px] overflow-y-auto flex flex-col ${isDark ? 'text-slate-300' : 'text-text-main-light'}`}
           onClick={focusInput}
         >
           {/* Command History */}
