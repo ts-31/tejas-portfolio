@@ -70,17 +70,28 @@ const ProjectsOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
         <button
           key={proj.id}
           onClick={() => {
-            const el = document.getElementById(proj.id);
-            if (el) {
-              document.querySelectorAll('.terminal-highlight').forEach(node =>
-                node.classList.remove('terminal-highlight')
-              );
-              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              el.classList.add('terminal-highlight');
-              setTimeout(() => {
-                el.classList.remove('terminal-highlight');
-              }, 2000);
-            }
+            // 1. Programmatically set filter to "All"
+            window.dispatchEvent(new CustomEvent('set-project-filter', { detail: 'All' }));
+
+            // 2. Wait for project cards to re-render
+            setTimeout(() => {
+              const el = document.getElementById(proj.id);
+              if (el) {
+                // 3. Clear previous highlights
+                document.querySelectorAll('.terminal-highlight').forEach(node =>
+                  node.classList.remove('terminal-highlight')
+                );
+
+                // 4. Scroll to target project
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // 5. Apply highlight (hover style)
+                el.classList.add('terminal-highlight');
+                setTimeout(() => {
+                  el.classList.remove('terminal-highlight');
+                }, 2000);
+              }
+            }, 100);
           }}
           className={`text-left hover:underline w-fit font-bold ${isDark ? 'text-primary' : 'text-primary-dark'}`}
         >

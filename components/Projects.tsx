@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Project } from '../types';
 interface ProjectsProps {
   isDark: boolean;
@@ -76,6 +76,14 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
       return project.category === 'open-source';
     return false;
   });
+
+  useEffect(() => {
+    const handleFilterChange = (e: any) => {
+      setActiveFilter(e.detail);
+    };
+    window.addEventListener('set-project-filter', handleFilterChange);
+    return () => window.removeEventListener('set-project-filter', handleFilterChange);
+  }, []);
   return (
     <section
       className="w-full max-w-7xl mx-auto px-4 py-16 relative z-10"
@@ -112,12 +120,12 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
         ))}
       </div>
       {/* Projects */}
-      <div className="flex overflow-x-auto pb-8 gap-8 snap-x snap-mandatory">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
         {filteredProjects.map((project, index) => (
           <div
             key={index}
             id={`project-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-            className={`flex-none w-[340px] md:w-[400px] snap-center group relative rounded-lg border overflow-hidden transition-all duration-300
+            className={`group relative rounded-lg border overflow-hidden transition-all duration-300 w-full max-w-[340px] md:max-w-[400px] mx-auto
               ${isDark
                 ? 'bg-card-dark border-zinc-800 hover:border-primary hover:shadow-neon-hover'
                 : 'bg-card-light border-gray-300 hover:border-primary-dark hover:shadow-card'
