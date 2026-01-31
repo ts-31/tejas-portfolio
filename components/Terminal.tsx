@@ -71,7 +71,15 @@ const AchievementsOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
       <span className={`material-symbols-outlined !text-lg mt-0.5 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>code</span>
       <div>
         <div className={`font-bold ${isDark ? 'text-white' : 'text-black'}`}>DSA Problem Solving</div>
-        <div className="text-sm opacity-80">225+ Problems Solved (LeetCode, GFG)</div>
+        <div className="text-sm opacity-80">225+ Problems Solved</div>
+        <div className="text-sm mt-1 flex flex-col gap-0.5">
+          <div>
+            GeeksforGeeks → <a href="https://geeksforgeeks.org/user/sonawanetejas031/" onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-primary hover:underline' : 'text-primary-dark hover:underline'}`}>@sonawanetejas031</a>
+          </div>
+          <div>
+            LeetCode → <a href="https://leetcode.com/u/T03/" onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-primary hover:underline' : 'text-primary-dark hover:underline'}`}>@T03</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
