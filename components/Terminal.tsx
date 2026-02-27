@@ -6,12 +6,14 @@ interface TerminalProps {
   isDark: boolean;
 }
 
-type TerminalCommandType = 'neofetch' | 'skills' | 'projects' | 'opensource' | 'socials' | 'achievements' | 'resume' | 'help' | 'error';
+type TerminalCommandType = 'neofetch' | 'skills' | 'projects' | 'opensource' | 'socials' | 'achievements' | 'resume' | 'help' | 'error' | 'ai_response';
 
 interface HistoryEntry {
   command: string;
   type: TerminalCommandType;
   invalidCommand?: string;
+  aiResponse?: string;
+  isAiStreaming?: boolean;
 }
 
 const NeofetchOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
@@ -185,7 +187,35 @@ const ErrorOutput: React.FC<{ isDark: boolean; invalidCommand?: string }> = ({ i
   </div>
 );
 
-const TerminalOutput: React.FC<{ type: TerminalCommandType; isDark: boolean; invalidCommand?: string }> = ({ type, isDark, invalidCommand }) => {
+const AITypingOutput: React.FC<{ isDark: boolean; text?: string; isStreaming?: boolean }> = ({ isDark, text, isStreaming }) => {
+  // Simple markdown bold parser for terminal aesthetics
+  const formatText = (input: string) => {
+    if (!input) return null;
+    const parts = input.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i} className={isDark ? 'text-white' : 'text-black'}>{part.slice(2, -2)}</strong>;
+      }
+      return <span key={i}>{part}</span>;
+    });
+  };
+
+  return (
+    <div className={`${isDark ? 'text-teal-400' : 'text-teal-600'} animate-fadeIn space-y-2 whitespace-pre-wrap font-mono`}>
+      <div className="flex items-center gap-2 mb-2 font-bold opacity-80 border-b border-current pb-1 w-fit">
+        <span className="material-symbols-outlined !text-[16px]">smart_toy</span>
+        TejasOS Assistant
+      </div>
+      <div className="leading-relaxed">
+        {formatText(text || '')}
+        {(isStreaming && (!text || text.length === 0)) ? 'Thinking...' : ''}
+        {isStreaming && text && text.length > 0 ? <span className="animate-pulse">_</span> : ''}
+      </div>
+    </div>
+  );
+};
+
+const TerminalOutput: React.FC<{ type: TerminalCommandType; isDark: boolean; invalidCommand?: string; aiResponse?: string; isAiStreaming?: boolean }> = ({ type, isDark, invalidCommand, aiResponse, isAiStreaming }) => {
   switch (type) {
     case 'neofetch': return <NeofetchOutput isDark={isDark} />;
     case 'skills': return <SkillsOutput isDark={isDark} />;
@@ -196,6 +226,7 @@ const TerminalOutput: React.FC<{ type: TerminalCommandType; isDark: boolean; inv
     case 'resume': return <ResumeOutput isDark={isDark} />;
     case 'help': return <HelpOutput isDark={isDark} />;
     case 'error': return <ErrorOutput isDark={isDark} invalidCommand={invalidCommand} />;
+    case 'ai_response': return <AITypingOutput isDark={isDark} text={aiResponse} isStreaming={isAiStreaming} />;
     default: return null;
   }
 };
@@ -285,7 +316,7 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
     setIsTyping(false);
   };
 
-  const handleCommand = (cmd: string) => {
+  const handleCommand = async (cmd: string) => {
     const trimmedCmd = cmd.trim().toLowerCase();
 
     if (trimmedCmd === 'clear') {
@@ -314,14 +345,80 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
     } else if (trimmedCmd === 'neofetch' || trimmedCmd === './identify.sh') {
       type = 'neofetch';
     } else if (trimmedCmd !== '') {
-      type = 'error';
-      invalidCommand = cmd;
+      type = 'ai_response';
     }
 
     if (trimmedCmd !== '') {
-      setHistory(prev => [...prev, { command: cmd, type, invalidCommand }]);
+      setHistory(prev => [...prev, {
+        command: cmd,
+        type,
+        invalidCommand: type === 'error' ? cmd : undefined,
+        aiResponse: '',
+        isAiStreaming: type === 'ai_response'
+      }]);
+      setCurrentInput('');
+
+      if (type === 'ai_response') {
+        setIsTyping(true);
+        try {
+          const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              userMessage: cmd,
+              messages: []
+            })
+          });
+
+          if (!response.ok) throw new Error('API Error');
+
+          const reader = response.body?.getReader();
+          const decoder = new TextDecoder();
+
+          if (reader) {
+            let aiText = '';
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+
+              const chunk = decoder.decode(value, { stream: true });
+              aiText += chunk;
+
+              setHistory(prev => {
+                const newHistory = [...prev];
+                const lastIdx = newHistory.length - 1;
+                if (newHistory[lastIdx].type === 'ai_response') {
+                  newHistory[lastIdx] = { ...newHistory[lastIdx], aiResponse: aiText };
+                }
+                return newHistory;
+              });
+            }
+          }
+        } catch (error) {
+          setHistory(prev => {
+            const newHistory = [...prev];
+            const lastIdx = newHistory.length - 1;
+            if (newHistory[lastIdx].type === 'ai_response') {
+              newHistory[lastIdx] = {
+                ...newHistory[lastIdx],
+                aiResponse: "System Error: Connection to TejasOS interrupted. Please check API Key."
+              };
+            }
+            return newHistory;
+          });
+        } finally {
+          setHistory(prev => {
+            const newHistory = [...prev];
+            const lastIdx = newHistory.length - 1;
+            if (newHistory[lastIdx].type === 'ai_response') {
+              newHistory[lastIdx] = { ...newHistory[lastIdx], isAiStreaming: false };
+            }
+            return newHistory;
+          });
+          setIsTyping(false);
+        }
+      }
     }
-    setCurrentInput('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -379,7 +476,7 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
                 <span className={isDark ? 'text-white' : 'text-text-main-light font-normal'}>{entry.command}</span>
               </div>
               <div className="pl-0 pt-1">
-                <TerminalOutput type={entry.type} isDark={isDark} invalidCommand={entry.invalidCommand} />
+                <TerminalOutput type={entry.type} isDark={isDark} invalidCommand={entry.invalidCommand} aiResponse={entry.aiResponse} isAiStreaming={entry.isAiStreaming} />
               </div>
             </div>
           ))}
