@@ -19,19 +19,52 @@ interface HistoryEntry {
 const NeofetchOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
   <div className="pl-0 md:pl-4 flex flex-col md:flex-row gap-6 pt-2 animate-fadeIn">
     <div className="hidden sm:block">
-      <div className="relative w-32 h-32">
-        <img
-          src="/img1.png"
-          alt="Profile"
-          className={`absolute inset-0 w-full h-full rounded-lg object-cover shadow-md transition-all duration-500 ease-in-out transform ${isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}
-        />
-        <img
-          src="/img2.png"
-          alt="Profile"
-          className={`absolute inset-0 w-full h-full rounded-lg object-cover shadow-md transition-all duration-500 ease-in-out transform ${!isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}
-        />
+      <div className={`relative w-32 h-32 rounded-lg p-0.5 transition-all duration-300 group/avatar animate-float
+        ${isDark
+          ? 'bg-gradient-to-br from-primary/40 via-primary/10 to-transparent shadow-[0_0_15px_rgba(57,255,20,0.2)]'
+          : 'bg-gradient-to-br from-primary-dark/30 via-primary-dark/5 to-transparent shadow-md'
+        }`}>
+        <div className="relative w-full h-full rounded-[6px] overflow-hidden bg-black/20 backdrop-blur-sm">
+          {/* CRT Grain Effect */}
+          <div className="absolute inset-0 pointer-events-none z-10 animate-crt-flicker bg-primary/5 mix-blend-overlay"></div>
+
+          <img
+            src="/img1.png"
+            alt="Profile"
+            style={{ imageRendering: 'pixelated' }}
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out transform ${isDark ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-sm scale-95'
+              }`}
+          />
+          <img
+            src="/img2.png"
+            alt="Profile"
+            style={{ imageRendering: 'pixelated' }}
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out transform ${!isDark ? 'opacity-100 blur-0 scale-100' : 'opacity-0 blur-sm scale-95'
+              }`}
+          />
+
+          {/* Glitch-like overlay on hover */}
+          <div className={`absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-0 group-hover/avatar:opacity-20 bg-primary`}></div>
+        </div>
+
+        {/* Minimalist Cyber Identity Frame */}
+        <div className={`absolute -inset-2 pointer-events-none transition-all duration-700 ${isDark ? 'text-primary' : 'text-primary-dark'}`}>
+          {/* 4 Tiny Viewfinder Accents */}
+          <div className="absolute top-0 left-0 w-1 h-1 border-t border-l border-current"></div>
+          <div className="absolute top-0 right-0 w-1 h-1 border-t border-r border-current"></div>
+          <div className="absolute bottom-0 left-0 w-1 h-1 border-b border-l border-current"></div>
+          <div className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-current"></div>
+
+          {/* Status Indicator (Top-Right) */}
+          <div className="absolute -top-1 -right-1 flex items-center justify-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse shadow-[0_0_5px_currentColor]"></div>
+          </div>
+
+          {/* Centered Identity Tag (Bottom) */}
+          <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap">
+            <span className="text-[7px] font-mono font-bold tracking-[0.2em] opacity-50 uppercase">[IDENTITY_V1]</span>
+          </div>
+        </div>
       </div>
     </div>
 

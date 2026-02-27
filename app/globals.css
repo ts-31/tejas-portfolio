@@ -58,3 +58,157 @@
   border-color: #2eb812 !important;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
 }
+
+/* CRT and Avatar Animations */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 4s linear infinite;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.15;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+
+  100% {
+    opacity: 0.15;
+  }
+}
+
+.animate-crt-flicker {
+  animation: flicker 0.1s infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes perimeterPulse {
+  0% {
+    left: -2px;
+    top: -2px;
+    width: 0;
+    height: 2px;
+    opacity: 0;
+  }
+
+  10% {
+    left: -2px;
+    top: -2px;
+    width: 50%;
+    height: 2px;
+    opacity: 1;
+  }
+
+  25% {
+    left: 100%;
+    top: -2px;
+    width: 0;
+    height: 2px;
+    opacity: 0;
+  }
+
+  26% {
+    right: -2px;
+    top: -2px;
+    width: 2px;
+    height: 0;
+    opacity: 0;
+  }
+
+  35% {
+    right: -2px;
+    top: -2px;
+    width: 2px;
+    height: 50%;
+    opacity: 1;
+  }
+
+  50% {
+    right: -2px;
+    top: 100%;
+    width: 2px;
+    height: 0;
+    opacity: 0;
+  }
+
+  51% {
+    right: -2px;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    opacity: 0;
+  }
+
+  60% {
+    right: -2px;
+    bottom: -2px;
+    width: 50%;
+    height: 2px;
+    opacity: 1;
+  }
+
+  75% {
+    right: 100%;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    opacity: 0;
+  }
+
+  76% {
+    left: -2px;
+    bottom: -2px;
+    width: 2px;
+    height: 0;
+    opacity: 0;
+  }
+
+  85% {
+    left: -2px;
+    bottom: -2px;
+    width: 2px;
+    height: 50%;
+    opacity: 1;
+  }
+
+  100% {
+    left: -2px;
+    top: 100%;
+    width: 2px;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.animate-perimeter-pulse {
+  position: absolute;
+  animation: perimeterPulse 4s linear infinite;
+  background: currentColor;
+  filter: blur(1px);
+}

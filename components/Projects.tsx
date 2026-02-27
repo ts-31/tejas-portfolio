@@ -229,12 +229,15 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
                   }`}>
                   <div className="flex items-center gap-3">
                     <span className="w-2 h-2 rounded-full bg-current animate-pulse shadow-[0_0_10px_currentColor]"></span>
-                    <h3 className="text-lg font-bold tracking-wider font-mono uppercase drop-shadow-sm">
+                    <h3 className="text-2xl font-bold tracking-wider font-mono uppercase drop-shadow-sm">
                       {project.title}
                     </h3>
                   </div>
                   <div className={`h-0.5 w-full mt-2 bg-gradient-to-r from-transparent via-current to-transparent opacity-50`}></div>
                 </div>
+                <p className={`mt-4 text-xs font-mono tracking-widest uppercase ${isDark ? 'text-primary/70' : 'text-primary-dark/70'}`}>
+                  View Details
+                </p>
               </div>
             </div>
           ))}
