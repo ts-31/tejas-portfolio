@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import OpenSource from '../components/OpenSource';
 import Contact from '../components/Contact';
@@ -40,6 +41,7 @@ export default function Home() {
                 ></div>
 
                 <Hero isDark={isDark} />
+                <Experience isDark={isDark} />
                 <Projects isDark={isDark} />
                 <OpenSource isDark={isDark} />
                 <Contact isDark={isDark} />

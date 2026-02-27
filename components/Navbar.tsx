@@ -12,6 +12,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
   const navLinks = [
     { name: 'home', href: '#' },
     { name: 'projects', href: '#projects' },
+    { name: 'experience', href: '#experience' },
     { name: 'gsoc', href: '#gsoc' },
     { name: 'contact', href: '#contact-section' },
   ];

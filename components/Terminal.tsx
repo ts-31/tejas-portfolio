@@ -6,7 +6,7 @@ interface TerminalProps {
   isDark: boolean;
 }
 
-type TerminalCommandType = 'neofetch' | 'skills' | 'projects' | 'opensource' | 'socials' | 'achievements' | 'resume' | 'help' | 'error' | 'ai_response';
+type TerminalCommandType = 'neofetch' | 'skills' | 'projects' | 'opensource' | 'socials' | 'achievements' | 'resume' | 'help' | 'error' | 'ai_response' | 'experience';
 
 interface HistoryEntry {
   command: string;
@@ -126,6 +126,18 @@ const ProjectsOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
 
 );
 
+const ExperienceOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
+  <div className={`${isDark ? 'text-slate-300' : 'text-text-main-light'} animate-fadeIn`}>
+    <div className={`${isDark ? 'text-primary' : 'text-primary-dark'} font-bold mb-2`}>CURRENT</div>
+    <div>Full Stack + GenAI Intern @ FlyYourTech</div>
+    <div className="pl-4 border-l-2 border-primary/20 mt-1 space-y-1">
+      <div>• specialized in LLM Integration (Gemini/GPT)</div>
+      <div>• Streaming AI Responses</div>
+      <div>• Backend AI Architecture & Context Management</div>
+    </div>
+  </div>
+);
+
 const OpenSourceOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
   <div className={`${isDark ? 'text-slate-300' : 'text-text-main-light'} animate-fadeIn`}>
     <div className={`${isDark ? 'text-primary' : 'text-primary-dark'} font-bold mb-2`}>ACCEPTED</div>
@@ -171,6 +183,7 @@ const HelpOutput: React.FC<{ isDark: boolean }> = ({ isDark }) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
       <div><span className="font-bold">skills</span>          - List technical skills</div>
       <div><span className="font-bold">achievements</span>    - GSoC & DSA stats</div>
+      <div><span className="font-bold">experience</span>      - Current Internship</div>
       <div><span className="font-bold">projects</span>        - View projects</div>
       <div><span className="font-bold">open source</span>     - GSoC details</div>
       <div><span className="font-bold">socials</span>         - Social links</div>
@@ -220,6 +233,7 @@ const TerminalOutput: React.FC<{ type: TerminalCommandType; isDark: boolean; inv
     case 'neofetch': return <NeofetchOutput isDark={isDark} />;
     case 'skills': return <SkillsOutput isDark={isDark} />;
     case 'achievements': return <AchievementsOutput isDark={isDark} />;
+    case 'experience': return <ExperienceOutput isDark={isDark} />;
     case 'projects': return <ProjectsOutput isDark={isDark} />;
     case 'opensource': return <OpenSourceOutput isDark={isDark} />;
     case 'socials': return <SocialsOutput isDark={isDark} />;
@@ -288,6 +302,7 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
     const script = [
       { text: './identify.sh', cmd: 'neofetch', delay: 800 },
       { text: 'cat skills.txt', cmd: 'skills', delay: 800 },
+      { text: 'cat current_job.log', cmd: 'experience', delay: 900 },
       { text: 'cat achievements.txt', cmd: 'achievements', delay: 1000 },
       { text: 'ls -l projects', cmd: 'projects', delay: 1200 },
       { text: 'cat social_impact.log', cmd: 'opensource', delay: 1000 },
@@ -330,6 +345,8 @@ const Terminal: React.FC<TerminalProps> = ({ isDark }) => {
 
     if (trimmedCmd === 'skills' || trimmedCmd === 'cat skills.txt') {
       type = 'skills';
+    } else if (trimmedCmd === 'experience' || trimmedCmd === 'cat current_job.log') {
+      type = 'experience';
     } else if (trimmedCmd === 'achievements' || trimmedCmd === 'cat achievements.txt') {
       type = 'achievements';
     } else if (trimmedCmd === 'projects' || trimmedCmd === 'ls projects' || trimmedCmd === 'ls -l projects') {

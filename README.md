@@ -19,7 +19,7 @@
 
 I'm **Tejas Sonawane**, a Full-Stack Developer and Open Source Contributor passionate about building impactful software that solves real problems.
 
-**Why I Stand Out:**
+- 💼 **Full Stack + GenAI Intern** @ FlyYourTech  
 - ✅ **Google Summer of Code 2025 Contributor** @ OpenAFS  
 - 💻 **225+ DSA Problems Solved** (GeeksforGeeks, LeetCode)  
 - 🛠️ **6 Full-Stack Projects** deployed and live  
