@@ -42,8 +42,8 @@ export default function Home() {
 
                 <Hero isDark={isDark} />
                 <Experience isDark={isDark} />
-                <Projects isDark={isDark} />
                 <OpenSource isDark={isDark} />
+                <Projects isDark={isDark} />
                 <Contact isDark={isDark} />
             </main>
 

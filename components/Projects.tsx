@@ -89,139 +89,156 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
       className="w-full max-w-7xl mx-auto px-4 py-16 relative z-10"
       id="projects"
     >
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <span
-          className={`text-2xl font-mono font-bold ${isDark ? 'text-primary' : 'text-primary-dark'
-            }`}
-        >
-          ./projects
-        </span>
-        <div className="h-px bg-primary/30 flex-grow" />
-      </div>
-      {/* Filters */}
-      <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-10 overflow-x-auto pb-2 scrollbar-hide">
-        {filters.map(filter => (
-          <button
-            key={filter}
-            onClick={() => setActiveFilter(filter)}
-            className={`font-switzer font-medium text-sm sm:text-base tracking-wide pb-0.5 whitespace-nowrap transition-colors border-b-2
-              ${activeFilter === filter
-                ? isDark
-                  ? 'text-primary border-primary drop-shadow-[0_0_5px_rgba(57,255,20,0.8)]'
-                  : 'text-primary-dark border-primary-dark'
-                : isDark
-                  ? 'text-slate-400 border-transparent hover:text-white hover:border-slate-600'
-                  : 'text-text-muted-light border-transparent hover:text-text-main-light hover:border-gray-400'
+      <div className="w-full max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-8">
+          <span
+            className={`text-2xl font-mono font-bold ${isDark ? 'text-primary' : 'text-primary-dark'
               }`}
           >
-            {filter}
-          </button>
-        ))}
-      </div>
-      {/* Projects */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
-        {filteredProjects.map((project, index) => (
-          <div
-            key={index}
-            id={`project-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-            className={`group relative rounded-lg border overflow-hidden transition-all duration-300 w-full max-w-[340px] md:max-w-[400px] mx-auto
-              ${isDark
-                ? 'bg-card-dark border-zinc-800 hover:border-primary hover:shadow-neon-hover'
-                : 'bg-card-light border-gray-300 hover:border-primary-dark hover:shadow-card'
-              }`}
-          >
-            {/* Image */}
-            <div
-              className={`aspect-video w-full overflow-hidden relative ${isDark ? 'bg-zinc-900' : 'bg-gray-100'
+            ./projects
+          </span>
+          <div className="h-px bg-primary/30 flex-grow" />
+        </div>
+        {/* Filters */}
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-10 overflow-x-auto pb-2 scrollbar-hide">
+          {filters.map(filter => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`font-switzer font-medium text-sm sm:text-base tracking-wide pb-0.5 whitespace-nowrap transition-colors border-b-2
+                ${activeFilter === filter
+                  ? isDark
+                    ? 'text-primary border-primary drop-shadow-[0_0_5px_rgba(57,255,20,0.8)]'
+                    : 'text-primary-dark border-primary-dark'
+                  : isDark
+                    ? 'text-slate-400 border-transparent hover:text-white hover:border-slate-600'
+                    : 'text-text-muted-light border-transparent hover:text-text-main-light hover:border-gray-400'
                 }`}
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${isDark
-                  ? 'opacity-60 group-hover:opacity-100'
-                  : 'opacity-90 group-hover:opacity-100'
-                  }`}
-              />
-              <div
-                className={`absolute inset-0 bg-gradient-to-t ${isDark
-                  ? 'from-black to-transparent opacity-80'
-                  : 'from-gray-900/50 to-transparent opacity-60'
-                  }`}
-              />
-            </div>
-            {/* Content */}
+              {filter}
+            </button>
+          ))}
+        </div>
+        {/* Projects */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
+          {filteredProjects.map((project, index) => (
             <div
-              className={`px-5 pt-5 pb-4 relative z-10 -mt-10 rounded-t-xl grid ${isDark ? '' : 'bg-white border-t border-gray-100'
+              key={index}
+              id={`project-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+              className={`group relative rounded-lg border overflow-hidden transition-all duration-300 w-full max-w-[340px] md:max-w-[400px] mx-auto flex flex-col h-full
+                ${isDark
+                  ? 'bg-card-dark border-zinc-800 hover:border-primary hover:shadow-neon-hover'
+                  : 'bg-card-light border-gray-300 hover:border-primary-dark hover:shadow-card'
                 }`}
-              style={{
-                gridTemplateRows: '48px 96px auto 32px',
-              }}
             >
-              {/* Title + Links */}
-              <div className="flex justify-between items-start gap-3">
-                <h3
-                  className={`text-xl font-bold leading-tight ${isDark
-                    ? 'text-white group-hover:text-primary'
-                    : 'text-text-main-light group-hover:text-primary-dark'
+              {/* Blur Container Wrapper */}
+              <div className="flex flex-col h-full transition-all duration-500 group-hover:blur-sm group-hover:opacity-30">
+                {/* Image */}
+                <div
+                  className={`aspect-video w-full overflow-hidden rounded-t-lg relative shrink-0 ${isDark ? 'bg-zinc-900' : 'bg-gray-100'
                     }`}
                 >
-                  {project.title}
-                </h3>
-                <div className="flex gap-2 shrink-0">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all ${isDark
-                      ? 'text-primary border-primary/30 bg-black/50 hover:bg-primary hover:text-black'
-                      : 'text-primary-dark border-primary-dark/30 bg-gray-50 hover:bg-primary hover:text-black'
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${isDark
+                      ? 'opacity-60 group-hover:opacity-100'
+                      : 'opacity-90 group-hover:opacity-100'
                       }`}
-                  >
-                    github
-                  </a>
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all ${isDark
-                        ? 'text-primary border-primary/30 bg-black/50 hover:bg-primary hover:text-black'
-                        : 'text-primary-dark border-primary-dark/30 bg-gray-50 hover:bg-primary hover:text-black'
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t ${isDark
+                      ? 'from-black to-transparent opacity-80'
+                      : 'from-gray-900/50 to-transparent opacity-60'
+                      }`}
+                  />
+                </div>
+                {/* Content */}
+                <div
+                  className={`px-5 pt-5 pb-4 relative z-10 -mt-10 rounded-t-xl rounded-b-lg flex flex-col flex-grow ${isDark ? '' : 'bg-white border-t border-gray-100'
+                    }`}
+                >
+                  {/* Title + Links */}
+                  <div className="flex justify-between items-center gap-3 mb-4">
+                    <h3
+                      className={`text-xl font-bold leading-tight truncate ${isDark
+                        ? 'text-white'
+                        : 'text-text-main-light'
                         }`}
                     >
-                      live
-                    </a>
-                  )}
-                </div>
-              </div>
-              {/* Description */}
-              <p
-                className={`text-sm leading-relaxed line-clamp-3 ${isDark ? 'text-slate-400' : 'text-text-muted-light'
-                  }`}
-              >
-                {project.description}
-              </p>
-              {/* Spacer */}
-              <div />
-              {/* Tags */}
-              <div className="flex gap-2 flex-wrap items-start self-end">
-                {project.tags.map(tag => (
-                  <span
-                    key={tag}
-                    className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded border ${isDark
-                      ? 'bg-zinc-900 text-slate-300 border-zinc-800'
-                      : 'bg-gray-100 text-text-muted-light border-gray-200'
+                      {project.title}
+                    </h3>
+                    <div className="flex gap-2 shrink-0">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all ${isDark
+                          ? 'text-primary border-primary/30 bg-black/50'
+                          : 'text-primary-dark border-primary-dark/30 bg-gray-50'
+                          }`}
+                      >
+                        github
+                      </a>
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all ${isDark
+                            ? 'text-primary border-primary/30 bg-black/50'
+                            : 'text-primary-dark border-primary-dark/30 bg-gray-50'
+                            }`}
+                        >
+                          live
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                  {/* Description */}
+                  <p
+                    className={`text-sm leading-relaxed line-clamp-3 mb-6 ${isDark ? 'text-slate-400' : 'text-text-muted-light'
                       }`}
                   >
-                    {tag}
-                  </span>
-                ))}
+                    {project.description}
+                  </p>
+                  {/* Tags */}
+                  <div className="flex gap-2 flex-wrap items-start mt-auto">
+                    {project.tags.map(tag => (
+                      <span
+                        key={tag}
+                        className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded border ${isDark
+                          ? 'bg-zinc-900 text-slate-300 border-zinc-800'
+                          : 'bg-gray-100 text-text-muted-light border-gray-200'
+                          }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Centered Premium Overlay */}
+              <div className="absolute inset-0 z-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-95 group-hover:scale-100 pointer-events-none px-6 text-center">
+                <div className={`px-4 py-2 rounded-lg border backdrop-blur-md shadow-2xl
+                  ${isDark
+                    ? 'bg-black/40 border-primary/50 text-primary shadow-primary/20'
+                    : 'bg-white/60 border-primary-dark/40 text-primary-dark shadow-xl'
+                  }`}>
+                  <div className="flex items-center gap-3">
+                    <span className="w-2 h-2 rounded-full bg-current animate-pulse shadow-[0_0_10px_currentColor]"></span>
+                    <h3 className="text-lg font-bold tracking-wider font-mono uppercase drop-shadow-sm">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <div className={`h-0.5 w-full mt-2 bg-gradient-to-r from-transparent via-current to-transparent opacity-50`}></div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
