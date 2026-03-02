@@ -139,33 +139,13 @@ const Projects: React.FC = () => {
                 <div
                   className="px-5 pt-5 pb-4 relative z-10 -mt-10 rounded-t-xl rounded-b-lg flex flex-col flex-grow"
                 >
-                  {/* Title + Links */}
-                  <div className="flex justify-between items-center gap-3 mb-4">
+                  {/* Title */}
+                  <div className="mb-4">
                     <h3
                       className="text-xl font-bold leading-tight truncate text-white"
                     >
                       {project.title}
                     </h3>
-                    <div className="flex gap-2 shrink-0">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all text-primary border-primary/30 bg-black/50"
-                      >
-                        github
-                      </a>
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all text-primary border-primary/30 bg-black/50"
-                        >
-                          live
-                        </a>
-                      )}
-                    </div>
                   </div>
                   {/* Description */}
                   <p
@@ -188,18 +168,42 @@ const Projects: React.FC = () => {
               </div>
 
               {/* Centered Premium Overlay */}
-              <div className="absolute inset-0 z-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-95 group-hover:scale-100 pointer-events-none px-6 text-center">
-                <div className="px-4 py-2 rounded-lg border backdrop-blur-md shadow-2xl bg-black/40 border-primary/50 text-primary shadow-primary/20">
-                  <div className="flex items-center gap-3">
+              <div className="absolute inset-0 z-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-95 group-hover:scale-100 px-6 text-center">
+                <div className="px-4 py-3 rounded-lg border backdrop-blur-md shadow-2xl bg-black/60 border-primary/50 text-primary shadow-primary/20">
+                  <div className="flex items-center gap-3 justify-center mb-1">
                     <span className="w-2 h-2 rounded-full bg-current animate-pulse shadow-[0_0_10px_currentColor]"></span>
                     <h3 className="text-2xl font-bold tracking-wider font-mono uppercase drop-shadow-sm">
                       {project.title}
                     </h3>
                   </div>
-                  <div className="h-0.5 w-full mt-2 bg-gradient-to-r from-transparent via-current to-transparent opacity-50"></div>
+                  <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-current to-transparent opacity-30"></div>
+
+                  {/* Action Buttons in Overlay */}
+                  <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-sm border border-primary bg-primary/10 text-primary font-mono text-[10px] font-bold transition-all hover:bg-primary hover:text-black shadow-[0_0_10px_rgba(57,255,20,0.1)] hover:shadow-neon pointer-events-auto"
+                    >
+                      <span className="material-symbols-outlined !text-[14px]">code</span>
+                      GIT_CLONE
+                    </a>
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-3 py-1.5 rounded-sm border border-primary bg-primary/10 text-primary font-mono text-[10px] font-bold transition-all hover:bg-primary hover:text-black shadow-[0_0_10px_rgba(57,255,20,0.1)] hover:shadow-neon pointer-events-auto"
+                      >
+                        <span className="material-symbols-outlined !text-[14px]">rocket_launch</span>
+                        LIVE_PUSH
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <p className="mt-4 text-xs font-mono tracking-widest uppercase text-primary/70">
-                  View Details
+                <p className="mt-4 text-[10px] font-mono tracking-[0.3em] uppercase text-primary/60">
+                  ./{project.title.toLowerCase().replace(/\s+/g, '-')}
                 </p>
               </div>
             </div>
