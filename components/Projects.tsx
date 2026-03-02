@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Project } from '../types';
-interface ProjectsProps {
-  isDark: boolean;
-}
 const projectsData: Project[] = [
   {
     title: 'BudgetBuddy',
@@ -65,7 +62,7 @@ const projectsData: Project[] = [
       'https://github.com/openafs-contrib/gnome-shell-extension-openafs',
   },
 ];
-const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
+const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const filters = ['All', 'Web', 'Backend', 'Open Source'];
   const filteredProjects = projectsData.filter(project => {
@@ -93,8 +90,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <span
-            className={`text-2xl font-mono font-bold ${isDark ? 'text-primary' : 'text-primary-dark'
-              }`}
+            className="text-2xl font-mono font-bold text-primary"
           >
             ./projects
           </span>
@@ -108,12 +104,8 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
               onClick={() => setActiveFilter(filter)}
               className={`font-switzer font-medium text-sm sm:text-base tracking-wide pb-0.5 whitespace-nowrap transition-colors border-b-2
                 ${activeFilter === filter
-                  ? isDark
-                    ? 'text-primary border-primary drop-shadow-[0_0_5px_rgba(57,255,20,0.8)]'
-                    : 'text-primary-dark border-primary-dark'
-                  : isDark
-                    ? 'text-slate-400 border-transparent hover:text-white hover:border-slate-600'
-                    : 'text-text-muted-light border-transparent hover:text-text-main-light hover:border-gray-400'
+                  ? 'text-primary border-primary drop-shadow-[0_0_5px_rgba(57,255,20,0.8)]'
+                  : 'text-slate-400 border-transparent hover:text-white hover:border-slate-600'
                 }`}
             >
               {filter}
@@ -126,46 +118,31 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
             <div
               key={index}
               id={`project-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-              className={`group relative rounded-lg border overflow-hidden transition-all duration-300 w-full max-w-[340px] md:max-w-[400px] mx-auto flex flex-col h-full
-                ${isDark
-                  ? 'bg-card-dark border-zinc-800 hover:border-primary hover:shadow-neon-hover'
-                  : 'bg-card-light border-gray-300 hover:border-primary-dark hover:shadow-card'
-                }`}
+              className="group relative rounded-lg border overflow-hidden transition-all duration-300 w-full max-w-[340px] md:max-w-[400px] mx-auto flex flex-col h-full bg-card-dark border-zinc-800 hover:border-primary hover:shadow-neon-hover"
             >
               {/* Blur Container Wrapper */}
               <div className="flex flex-col h-full transition-all duration-500 group-hover:blur-sm group-hover:opacity-30">
                 {/* Image */}
                 <div
-                  className={`aspect-video w-full overflow-hidden rounded-t-lg relative shrink-0 ${isDark ? 'bg-zinc-900' : 'bg-gray-100'
-                    }`}
+                  className="aspect-video w-full overflow-hidden rounded-t-lg relative shrink-0 bg-zinc-900"
                 >
                   <img
                     src={project.image}
                     alt={project.title}
-                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${isDark
-                      ? 'opacity-60 group-hover:opacity-100'
-                      : 'opacity-90 group-hover:opacity-100'
-                      }`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100"
                   />
                   <div
-                    className={`absolute inset-0 bg-gradient-to-t ${isDark
-                      ? 'from-black to-transparent opacity-80'
-                      : 'from-gray-900/50 to-transparent opacity-60'
-                      }`}
+                    className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"
                   />
                 </div>
                 {/* Content */}
                 <div
-                  className={`px-5 pt-5 pb-4 relative z-10 -mt-10 rounded-t-xl rounded-b-lg flex flex-col flex-grow ${isDark ? '' : 'bg-white border-t border-gray-100'
-                    }`}
+                  className="px-5 pt-5 pb-4 relative z-10 -mt-10 rounded-t-xl rounded-b-lg flex flex-col flex-grow"
                 >
                   {/* Title + Links */}
                   <div className="flex justify-between items-center gap-3 mb-4">
                     <h3
-                      className={`text-xl font-bold leading-tight truncate ${isDark
-                        ? 'text-white'
-                        : 'text-text-main-light'
-                        }`}
+                      className="text-xl font-bold leading-tight truncate text-white"
                     >
                       {project.title}
                     </h3>
@@ -174,10 +151,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all ${isDark
-                          ? 'text-primary border-primary/30 bg-black/50'
-                          : 'text-primary-dark border-primary-dark/30 bg-gray-50'
-                          }`}
+                        className="text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all text-primary border-primary/30 bg-black/50"
                       >
                         github
                       </a>
@@ -186,10 +160,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all ${isDark
-                            ? 'text-primary border-primary/30 bg-black/50'
-                            : 'text-primary-dark border-primary-dark/30 bg-gray-50'
-                            }`}
+                          className="text-[10px] sm:text-xs font-mono border px-2 py-1 rounded transition-all text-primary border-primary/30 bg-black/50"
                         >
                           live
                         </a>
@@ -198,8 +169,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
                   </div>
                   {/* Description */}
                   <p
-                    className={`text-sm leading-relaxed line-clamp-3 mb-6 ${isDark ? 'text-slate-400' : 'text-text-muted-light'
-                      }`}
+                    className="text-sm leading-relaxed line-clamp-3 mb-6 text-slate-400"
                   >
                     {project.description}
                   </p>
@@ -208,10 +178,7 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
                     {project.tags.map(tag => (
                       <span
                         key={tag}
-                        className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded border ${isDark
-                          ? 'bg-zinc-900 text-slate-300 border-zinc-800'
-                          : 'bg-gray-100 text-text-muted-light border-gray-200'
-                          }`}
+                        className="text-[10px] uppercase font-mono px-2 py-0.5 rounded border bg-zinc-900 text-slate-300 border-zinc-800"
                       >
                         {tag}
                       </span>
@@ -222,20 +189,16 @@ const Projects: React.FC<ProjectsProps> = ({ isDark }) => {
 
               {/* Centered Premium Overlay */}
               <div className="absolute inset-0 z-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-95 group-hover:scale-100 pointer-events-none px-6 text-center">
-                <div className={`px-4 py-2 rounded-lg border backdrop-blur-md shadow-2xl
-                  ${isDark
-                    ? 'bg-black/40 border-primary/50 text-primary shadow-primary/20'
-                    : 'bg-white/60 border-primary-dark/40 text-primary-dark shadow-xl'
-                  }`}>
+                <div className="px-4 py-2 rounded-lg border backdrop-blur-md shadow-2xl bg-black/40 border-primary/50 text-primary shadow-primary/20">
                   <div className="flex items-center gap-3">
                     <span className="w-2 h-2 rounded-full bg-current animate-pulse shadow-[0_0_10px_currentColor]"></span>
                     <h3 className="text-2xl font-bold tracking-wider font-mono uppercase drop-shadow-sm">
                       {project.title}
                     </h3>
                   </div>
-                  <div className={`h-0.5 w-full mt-2 bg-gradient-to-r from-transparent via-current to-transparent opacity-50`}></div>
+                  <div className="h-0.5 w-full mt-2 bg-gradient-to-r from-transparent via-current to-transparent opacity-50"></div>
                 </div>
-                <p className={`mt-4 text-xs font-mono tracking-widest uppercase ${isDark ? 'text-primary/70' : 'text-primary-dark/70'}`}>
+                <p className="mt-4 text-xs font-mono tracking-widest uppercase text-primary/70">
                   View Details
                 </p>
               </div>

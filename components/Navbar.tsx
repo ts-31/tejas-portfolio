@@ -1,11 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-interface NavbarProps {
-  isDark: boolean;
-  toggleTheme: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
+const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const scrollRef = useRef<number | null>(null);
 
@@ -60,13 +55,13 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-primary/20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm transition-colors duration-300">
+    <header className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-primary/20 bg-background-dark/95 backdrop-blur-sm transition-colors duration-300 shadow-lg shadow-black/20">
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
         <div className="w-full max-w-4xl mx-auto flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="text-primary-dark dark:text-primary material-symbols-outlined !text-[24px]">terminal</span>
-            <span className="text-text-main-light dark:text-white text-lg font-bold tracking-tight font-mono">
-              <span className="text-primary-dark dark:text-primary">&gt;_</span> TS
+            <span className="text-primary material-symbols-outlined !text-[24px]">terminal</span>
+            <span className="text-white text-lg font-bold tracking-tight font-mono">
+              <span className="text-primary">&gt;_</span> TS
             </span>
           </div>
 
@@ -77,9 +72,9 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleScroll(e, link.href)}
-                className="group flex items-center gap-1 text-sm font-medium text-text-muted-light dark:text-slate-400 hover:text-primary-dark dark:hover:text-primary transition-colors"
+                className="group flex items-center gap-1 text-sm font-medium text-slate-400 hover:text-primary transition-colors"
               >
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-primary-dark dark:text-primary">./</span>
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-primary">./</span>
                 {link.name}
               </a>
             ))}
@@ -87,25 +82,15 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
 
           <div className="flex items-center gap-4">
             <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
-              aria-label="Toggle Theme"
-            >
-              <span className="material-symbols-outlined text-text-main-light dark:text-white !text-[20px]">
-                {isDark ? 'light_mode' : 'dark_mode'}
-              </span>
-            </button>
-
-            <button
               onClick={() => window.dispatchEvent(new CustomEvent('execute-resume'))}
-              className="hidden md:flex cursor-pointer items-center justify-center rounded-sm border border-primary-dark dark:border-primary bg-primary/10 px-4 py-1.5 text-xs font-bold text-primary-dark dark:text-primary hover:bg-primary hover:text-black transition-all shadow-[0_0_10px_rgba(57,255,20,0.15)] hover:shadow-neon font-mono"
+              className="hidden md:flex cursor-pointer items-center justify-center rounded-sm border border-primary bg-primary/10 px-4 py-1.5 text-xs font-bold transition-all font-mono border-primary text-primary hover:bg-primary hover:text-black shadow-[0_0_10px_rgba(57,255,20,0.15)] hover:shadow-neon"
             >
               EXECUTE_RESUME.sh
             </button>
 
 
             <button
-              className="md:hidden text-text-main-light dark:text-white hover:text-primary-dark dark:hover:text-primary"
+              className="md:hidden text-white hover:text-primary"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <span className="material-symbols-outlined">menu</span>
@@ -116,15 +101,15 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden border-t border-primary/20 bg-background-light dark:bg-background-dark p-4 flex flex-col gap-4 font-mono shadow-xl">
+        <div className="md:hidden border-t p-4 flex flex-col gap-4 font-mono shadow-xl border-primary/20 bg-background-dark">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => handleScroll(e, link.href)}
-              className="flex items-center gap-2 text-sm font-medium text-text-muted-light dark:text-slate-400 hover:text-primary-dark dark:hover:text-primary transition-colors"
+              className="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-primary transition-colors"
             >
-              <span className="text-primary-dark dark:text-primary">./</span>
+              <span className="text-primary">./</span>
               {link.name}
             </a>
           ))}
@@ -133,7 +118,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
               setIsMenuOpen(false);
               window.dispatchEvent(new CustomEvent('execute-resume'));
             }}
-            className="w-full mt-2 cursor-pointer items-center justify-center rounded-sm border border-primary-dark dark:border-primary bg-primary/10 px-4 py-2 text-xs font-bold text-primary-dark dark:text-primary hover:bg-primary hover:text-black transition-all shadow-neon font-mono"
+            className="w-full mt-2 cursor-pointer items-center justify-center rounded-sm border border-primary bg-primary/10 px-4 py-2 text-xs font-bold text-primary hover:bg-primary hover:text-black transition-all shadow-neon font-mono"
           >
             EXECUTE_RESUME.sh
           </button>
