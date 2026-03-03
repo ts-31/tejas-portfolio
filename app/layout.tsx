@@ -4,6 +4,13 @@ import "./globals.css";
 export const metadata: Metadata = {
     title: "Tejas Sonawane Portfolio",
     description: "Portfolio of Tejas Sonawane - Full Stack Developer & GSoC 2025 Contributor",
+    icons: {
+        icon: [
+            { url: '/favicon.ico', sizes: 'any' },
+            { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+        ],
+        apple: '/apple-icon.png',
+    },
     openGraph: {
         title: 'Tejas Sonawane | Open Source Developer',
         description: 'GSoC 2025 Contributor & Full Stack Developer Portfolio',
