@@ -42,10 +42,10 @@ This isn't just another portfolio website. It's an **interactive terminal experi
    - Auto-suggest and command history support  
 
 2. **🎨 Premium Design System**  
-   - Dark/Light mode toggle with smooth transitions  
+   - Refined single dark theme (Ben 10 inspired)
    - Glassmorphism effects and neon shadows  
    - Fully responsive across all devices  
-   - Minimal, cyberpunk-inspired aesthetic  
+   - Minimal, cyberpunk-inspired aesthetic with premium micro-animations
 
 3. **📂 Smart Project Navigation**  
    - Interactive project filtering (Web, Backend, Open Source)  
@@ -73,11 +73,10 @@ This isn't just another portfolio website. It's an **interactive terminal experi
 - Tailwind CSS 3.4
 
 **Features:**
-- Dark/Light theme switching
-- Terminal emulation with custom commands
+- Terminal emulation with custom commands and premium animations
 - GitHub API integration
 - Responsive design
-- SEO optimized
+- SEO optimized with custom circular profile favicon
 
 **Dev Tools:**
 - ESLint
@@ -113,9 +112,9 @@ This portfolio features **6 production-ready projects**, including:
 ![Projects Section](.github/screenshots/projects.png)
 *Filterable project cards with live demos*
 
-### Dark Mode
-![Dark Theme](.github/screenshots/dark-mode.png)
-*Sleek dark theme with neon accents*
+### Premium Dark Theme
+![Portfolio Aesthetics](.github/screenshots/hero.png)
+*Sleek dark theme with neon accents and refined animations*
 
 > **Note:** Add screenshots to `.github/screenshots/` directory
 
@@ -172,6 +171,7 @@ Once the portfolio loads, try these commands in the terminal:
 | `resume` | Download my resume |
 | `help` | Show all available commands |
 | `clear` | Clear terminal history |
+| `neofetch` | Interactive profile with premium pulse effects |
 
 ---
 

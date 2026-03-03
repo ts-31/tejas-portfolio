@@ -14,13 +14,19 @@ interface HistoryEntry {
 
 const NeofetchOutput: React.FC = () => (
   <div className="pl-0 md:pl-4 flex flex-col md:flex-row gap-6 pt-2 animate-fadeIn">
-    <div className="hidden sm:block">
-      <div className="w-32 h-32 rounded-lg overflow-hidden border-2 border-primary/20 bg-zinc-900 shadow-lg">
+    <div className="hidden sm:block group/avatar">
+      <div className="relative w-32 h-32 rounded-lg overflow-hidden border-2 border-primary/20 bg-zinc-900 shadow-lg transition-all duration-500 ease-out hover:border-primary/50 hover:scale-[1.02] hover:shadow-neon group-hover/avatar:animate-profile-pulse">
+        {/* Entrance Overlay */}
+        <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
         <img
           src="/img1.png"
           alt="Profile"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover/avatar:scale-110"
         />
+
+        {/* Subtle Scanline Overlay for hover depth */}
+        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/avatar:opacity-10 bg-gradient-to-b from-transparent via-primary/20 to-transparent animate-scanline"></div>
       </div>
     </div>
 
