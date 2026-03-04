@@ -23,6 +23,11 @@ const Hero: React.FC = () => {
       </div>
 
       <Terminal />
+
+      <div className="flex flex-col items-center mt-2 animate-bounce md:hidden opacity-60">
+        <span className="text-[10px] font-mono text-primary mb-1 uppercase tracking-widest">Scroll to explore</span>
+        <span className="material-symbols-outlined text-primary text-xl">keyboard_arrow_down</span>
+      </div>
     </div>
   );
 };
