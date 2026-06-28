@@ -90,7 +90,7 @@ const ProjectsOutput: React.FC = () => (
         { title: 'BudgetBuddy', desc: 'Full-stack finance tracker', id: 'project-budgetbuddy' },
         { title: 'BookMyDoctor', desc: 'MERN appointment platform', id: 'project-bookmydoctor' },
         { title: 'GIMP Ext Site Gen', desc: 'Hugo static site generator', id: 'project-gimp-ext-site-generator' },
-        { title: 'MatchMyResume', desc: 'AI Resume matching tool', id: 'project-matchmyresume' },
+        { title: 'AgentDesk', desc: 'AI Support Platform', id: 'project-agentdesk' },
         { title: 'AgentHub', desc: 'Multi-agent AI chat platform', id: 'project-agenthub' },
         { title: 'OpenAFS Client', desc: 'GNOME Shell extension', id: 'project-openafs-client-manager' },
       ].map((proj) => (
@@ -123,7 +123,7 @@ const ProjectsOutput: React.FC = () => (
 const ExperienceOutput: React.FC = () => (
   <div className="text-slate-300 animate-fadeIn">
     <div className="text-primary font-bold mb-2">CURRENT</div>
-    <div>Full Stack + GenAI Intern @ FlyYourTech</div>
+    <div>Full Stack + Agentic AI Intern @ FlyYourTech</div>
     <div className="pl-4 border-l-2 border-primary/20 mt-1 space-y-1">
       <div>• specialized in LLM Integration (Gemini/GPT)</div>
       <div>• Streaming AI Responses</div>
@@ -238,6 +238,8 @@ const TerminalOutput: React.FC<{ type: TerminalCommandType; invalidCommand?: str
 
 const Terminal: React.FC = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [currentInput, setCurrentInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isFocused, setIsFocused] = useState(true); // Auto-focus on load
@@ -357,6 +359,8 @@ const Terminal: React.FC = () => {
     }
 
     if (trimmedCmd !== '') {
+      setCommandHistory(prev => [...prev, trimmedCmd]);
+      setHistoryIndex(-1);
       setHistory(prev => [...prev, {
         command: cmd,
         type,
@@ -437,7 +441,26 @@ const Terminal: React.FC = () => {
     if (e.key === 'Enter') {
       e.preventDefault();
       handleCommand(currentInput);
-    } else if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (commandHistory.length > 0) {
+        const newIndex = historyIndex === -1 ? commandHistory.length - 1 : Math.max(0, historyIndex - 1);
+        setHistoryIndex(newIndex);
+        setCurrentInput(commandHistory[newIndex]);
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIndex !== -1) {
+        const newIndex = historyIndex + 1;
+        if (newIndex >= commandHistory.length) {
+          setHistoryIndex(-1);
+          setCurrentInput('');
+        } else {
+          setHistoryIndex(newIndex);
+          setCurrentInput(commandHistory[newIndex]);
+        }
+      }
+    } else if (['ArrowLeft', 'ArrowRight'].includes(e.key)) {
       e.stopPropagation();
     }
   };

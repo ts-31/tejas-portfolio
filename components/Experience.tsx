@@ -32,7 +32,7 @@ const Experience: React.FC = () => {
                         <div className="inline-flex items-center gap-2 mx-auto md:mx-0">
                             <span className="bg-primary text-black text-xs font-bold px-2 py-0.5 rounded-sm animate-pulse">CURRENT</span>
                             <h3 className="text-2xl font-bold font-display text-white">
-                                Full Stack + GenAI Intern
+                                Full Stack + Agentic AI Intern
                             </h3>
                         </div>
                         <p className="text-lg font-semibold font-mono text-primary">
@@ -41,7 +41,7 @@ const Experience: React.FC = () => {
 
                         <div className="mt-2 text-sm leading-relaxed space-y-3 text-slate-300">
                             <p>
-                                Engineering production-focused applications by merging robust Full Stack development with advanced Generative AI capabilities.
+                                Engineering production-focused applications by merging robust Full Stack development with advanced Agentic AI capabilities.
                             </p>
                             <ul className="list-none space-y-2 text-left mx-auto md:mx-0 max-w-2xl">
                                 <li className="flex items-start gap-2">

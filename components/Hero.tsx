@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
           <h2 className="text-xs md:text-sm font-medium tracking-wide uppercase font-mono text-primary">
-            Open Source Developer | GSOC 2025 | Full-Stack Dev
+            Full Stack & Agentic AI Dev | Open Source | GSoC 2025
           </h2>
         </div>
       </div>
