@@ -3,7 +3,7 @@ export interface Project {
   description: string;
   image: string;
   tags: string[];
-  category: 'web' | 'backend' | 'open-source' | 'all';
+  category: 'web' | 'backend' | 'open-source' | 'all' | 'agentic-ai';
   github: string;
   live?: string;
 }
