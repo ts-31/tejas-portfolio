@@ -255,7 +255,9 @@ const Terminal: React.FC = () => {
       { command: 'neofetch', type: 'neofetch' },
       { command: 'skills', type: 'skills' }
     ]);
-
+    // Populate commandHistory with the initial commands for navigation
+    setCommandHistory(['neofetch', 'skills']);
+    setHistoryIndex(-1);
     // Auto-focus input on mount
     inputRef.current?.focus();
 
@@ -440,6 +442,15 @@ const Terminal: React.FC = () => {
     }
     if (e.key === 'Enter') {
       e.preventDefault();
+      const trimmedCmd = currentInput.trim().toLowerCase();
+      if (['exec', 'execsh'].includes(trimmedCmd)) {
+        // Run the story script
+        runStory();
+        setCommandHistory(prev => [...prev, trimmedCmd]);
+        setHistoryIndex(-1);
+        setCurrentInput('');
+        return;
+      }
       handleCommand(currentInput);
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
