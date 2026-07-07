@@ -32,7 +32,7 @@ const Experience: React.FC = () => {
                         <div className="inline-flex items-center gap-2 mx-auto md:mx-0">
                             <span className="bg-primary text-black text-xs font-bold px-2 py-0.5 rounded-sm animate-pulse">CURRENT</span>
                             <h3 className="text-2xl font-bold font-display text-white">
-                                Full Stack + Agentic AI Intern
+                                Full Stack + Agentic AI Developer
                             </h3>
                         </div>
                         <p className="text-lg font-semibold font-mono text-primary">
@@ -46,19 +46,19 @@ const Experience: React.FC = () => {
                             <ul className="list-none space-y-2 text-left mx-auto md:mx-0 max-w-2xl">
                                 <li className="flex items-start gap-2">
                                     <span className="material-symbols-outlined !text-[18px] mt-0.5 text-primary">arrow_right</span>
-                                    <span><strong>LLM Integration:</strong> Seamlessly embedding Gemini and GPT models into application logic natively.</span>
+                                    <span><strong>Backend Architecture:</strong> Built production FastAPI backends with AWS CI/CD and Docker.</span>
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <span className="material-symbols-outlined !text-[18px] mt-0.5 text-primary">arrow_right</span>
-                                    <span><strong>Advanced Prompting:</strong> Designing complex system prompts and managing context for deterministic outputs.</span>
+                                    <span><strong>AI & Data Integration:</strong> Integrated external AI APIs, PostgreSQL, and Qdrant vector search.</span>
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <span className="material-symbols-outlined !text-[18px] mt-0.5 text-primary">arrow_right</span>
-                                    <span><strong>Backend Architecture:</strong> Building optimized API routes, context generation layers, and executing basic RAG architecture.</span>
+                                    <span><strong>Security & APIs:</strong> Implemented secure JWT/OAuth authentication, RBAC, and third-party API integrations.</span>
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <span className="material-symbols-outlined !text-[18px] mt-0.5 text-primary">arrow_right</span>
-                                    <span><strong>Frontend & Streaming:</strong> Connecting React/Next.js frontends to handle text-streaming for low-latency user experiences.</span>
+                                    <span><strong>Full-Stack Features:</strong> Shipped responsive frontend dashboards and components using React, TypeScript, and Tailwind CSS.</span>
                                 </li>
                             </ul>
                         </div>

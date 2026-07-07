@@ -37,7 +37,7 @@ const NeofetchOutput: React.FC = () => (
         <span className="text-primary font-bold">Kernel</span> <span>5.15.0-custom</span>
         <span className="text-primary font-bold">Uptime</span> <span>21 years</span>
         <span className="text-primary font-bold">Shell</span> <span>zsh 5.8</span>
-        <span className="text-primary font-bold">Role</span> <span>Full Stack Developer</span>
+        <span className="text-primary font-bold">Role</span> <span>Full Stack + Agentic AI</span>
         <span className="text-primary font-bold">Location</span> <span>India</span>
       </div>
     </div>
@@ -46,7 +46,7 @@ const NeofetchOutput: React.FC = () => (
 
 const SkillsOutput: React.FC = () => (
   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-1 text-slate-300 animate-fadeIn">
-    {['JavaScript', 'React', 'Next.js', 'Node.js', 'Express', 'FastAPI', 'Linux', 'Python'].map(skill => (
+    {['JavaScript', 'React', 'Next.js', 'Node.js', 'Express', 'FastAPI', 'Linux', 'Python', 'CI/CD', 'AWS', 'Agentic AI'].map(skill => (
       <div key={skill} className="flex items-center gap-2">
         <span className="text-primary">➜</span>
         {skill}
@@ -123,11 +123,12 @@ const ProjectsOutput: React.FC = () => (
 const ExperienceOutput: React.FC = () => (
   <div className="text-slate-300 animate-fadeIn">
     <div className="text-primary font-bold mb-2">CURRENT</div>
-    <div>Full Stack + Agentic AI Intern @ FlyYourTech</div>
-    <div className="pl-4 border-l-2 border-primary/20 mt-1 space-y-1">
-      <div>• specialized in LLM Integration (Gemini/GPT)</div>
-      <div>• Streaming AI Responses</div>
-      <div>• Backend AI Architecture & Context Management</div>
+    <div>Full Stack + Agentic AI Developer @ FlyYourTech</div>
+    <div className="pl-4 border-l-2 border-primary/20 mt-1 space-y-1 text-sm">
+      <div>• Built production FastAPI backends with AWS CI/CD and Docker</div>
+      <div>• Integrated AI APIs, PostgreSQL, and Qdrant vector search</div>
+      <div>• Implemented secure JWT/OAuth authentication and RBAC</div>
+      <div>• Shipped responsive full-stack features using React and Tailwind</div>
     </div>
   </div>
 );
