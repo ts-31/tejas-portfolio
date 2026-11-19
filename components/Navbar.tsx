@@ -5,11 +5,11 @@ const Navbar: React.FC = () => {
   const scrollRef = useRef<number | null>(null);
 
   const navLinks = [
-    { name: 'home', href: '#' },
-    { name: 'experience', href: '#experience' },
-    { name: 'gsoc', href: '#gsoc' },
-    { name: 'projects', href: '#projects' },
-    { name: 'contact', href: '#contact-section' },
+    { name: 'Home', href: '#' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Open Source', href: '#gsoc' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact-section' },
   ];
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -55,45 +55,60 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-primary/20 bg-background-dark/95 backdrop-blur-sm transition-colors duration-300 shadow-lg shadow-black/20">
+    <header className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-border-subtle bg-background-dark/90 backdrop-blur-md transition-colors duration-300">
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
         <div className="w-full max-w-4xl mx-auto flex h-16 items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-primary material-symbols-outlined !text-[24px]">terminal</span>
-            <span className="text-white text-lg font-bold tracking-tight font-mono">
-              <span className="text-primary">&gt;_</span> TS
+          {/* Logo */}
+          <div className="flex items-center">
+            <span className="text-white text-lg font-bold tracking-tight font-display border-l-[3px] border-primary pl-2">
+              TS
             </span>
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex flex-1 justify-center gap-8 font-mono">
+          <nav className="hidden md:flex flex-1 justify-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleScroll(e, link.href)}
-                className="group flex items-center gap-1 text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+                className="text-sm font-medium text-slate-400 hover:text-primary transition-colors font-body border-b-2 border-transparent hover:border-primary pb-0.5"
               >
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-primary">./</span>
                 {link.name}
               </a>
             ))}
           </nav>
 
           <div className="flex items-center gap-4">
+            {/* Desktop CTA */}
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('execute-resume'))}
-              className="hidden md:flex cursor-pointer items-center justify-center rounded-sm border border-primary bg-primary/10 px-4 py-1.5 text-xs font-bold transition-all font-mono border-primary text-primary hover:bg-primary hover:text-black shadow-[0_0_10px_rgba(57,255,20,0.15)] hover:shadow-neon"
+              className="hidden md:flex cursor-pointer items-center justify-center rounded-lg bg-primary text-white hover:bg-primary/90 px-4 py-2 text-sm font-semibold transition-all duration-200"
             >
-              EXECUTE_RESUME.sh
+              Download Resume
             </button>
 
-
+            {/* Mobile hamburger */}
             <button
-              className="md:hidden text-white hover:text-primary"
+              className="md:hidden text-white hover:text-primary transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
             >
-              <span className="material-symbols-outlined">menu</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
             </button>
           </div>
         </div>
@@ -101,15 +116,14 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden border-t p-4 flex flex-col gap-4 font-mono shadow-xl border-primary/20 bg-background-dark">
+        <div className="md:hidden border-t border-border-subtle bg-card-dark p-4 flex flex-col gap-4 shadow-xl">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => handleScroll(e, link.href)}
-              className="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-primary transition-colors"
+              className="text-sm font-medium text-slate-400 hover:text-primary transition-colors font-body border-b-2 border-transparent hover:border-primary pb-0.5 w-fit"
             >
-              <span className="text-primary">./</span>
               {link.name}
             </a>
           ))}
@@ -118,11 +132,10 @@ const Navbar: React.FC = () => {
               setIsMenuOpen(false);
               window.dispatchEvent(new CustomEvent('execute-resume'));
             }}
-            className="w-full mt-2 cursor-pointer items-center justify-center rounded-sm border border-primary bg-primary/10 px-4 py-2 text-xs font-bold text-primary hover:bg-primary hover:text-black transition-all shadow-neon font-mono"
+            className="w-full mt-2 cursor-pointer items-center justify-center rounded-lg bg-primary text-white hover:bg-primary/90 px-4 py-2 text-sm font-semibold transition-all duration-200"
           >
-            EXECUTE_RESUME.sh
+            Download Resume
           </button>
-
         </div>
       )}
     </header>

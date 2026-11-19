@@ -40,87 +40,88 @@ const OpenSource: React.FC = () => {
   return (
     <section className="w-full max-w-7xl mx-auto px-4 pb-24 relative z-10" id="gsoc">
       <div className="w-full max-w-4xl mx-auto">
-        <div className="flex items-center gap-4 mb-10">
-          <span className="text-2xl font-mono font-bold text-primary">./open_source</span>
-          <div className="h-px flex-grow bg-primary/30"></div>
-        </div>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-12 section-heading">
+          Open Source
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* GSOC Card */}
-          <div className="md:col-span-2 rounded-lg border p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden group border-primary bg-primary/5">
-            <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 blur-[50px] rounded-full bg-primary/20"></div>
+          {/* GSoC Card */}
+          <div className="md:col-span-2 bg-card-dark border border-border-subtle rounded-xl p-6 md:p-8 card-hover-glow relative overflow-hidden">
+            {/* Left indigo accent bar */}
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl" />
 
-            <div className="flex-shrink-0 relative">
-              <div className="w-24 h-24 rounded-full border-2 flex items-center justify-center shadow-neon border-primary/50 bg-black">
-                <span className="material-symbols-outlined text-[48px] animate-pulse text-primary">
-                  code_blocks
-                </span>
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              {/* Icon badge */}
+              <div className="flex-shrink-0 w-16 h-16 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-center">
+                <span className="text-2xl font-display font-black text-primary">G</span>
               </div>
-            </div>
 
-            <div className="flex flex-col gap-3 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 mx-auto md:mx-0">
-                <span className="bg-primary text-black text-xs font-bold px-2 py-0.5 rounded-sm">ACCEPTED</span>
-                <h3 className="text-2xl font-bold font-display text-white">
+              {/* Content */}
+              <div className="flex flex-col">
+                <span className="text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full w-fit">
+                  Accepted
+                </span>
+                <h3 className="font-display text-xl md:text-2xl font-bold text-white mt-1">
                   Google Summer of Code 2025
                 </h3>
-              </div>
-              <p className="text-base font-semibold mb-1 text-primary">
-                OpenAFS — Distributed File System
-              </p>
-              <p className="text-sm leading-relaxed max-w-xl text-slate-300">
-                Built a production-grade GNOME Shell extension for managing distributed file systems in academic and research environments. Implemented async, non-blocking UI flows for system-level operations, designed modular components for live status indicators, and shipped features used by real Linux users including live updates, notifications, and failure handling.
-              </p>
-              <div className="flex gap-4 mt-2 justify-center md:justify-start">
+                <p className="font-mono text-primary text-sm font-semibold mt-1">
+                  OpenAFS — Distributed File System
+                </p>
+                <p className="text-text-muted-dark text-sm leading-relaxed mt-3 max-w-xl">
+                  Built a production-grade GNOME Shell extension for managing distributed file systems in academic and research environments. Implemented async, non-blocking UI flows for system-level operations, designed modular components for live status indicators, and shipped features used by real Linux users including live updates, notifications, and failure handling.
+                </p>
                 <a
                   href="https://summerofcode.withgoogle.com/programs/2025/projects/dS7QYyMI"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-mono flex items-center gap-1 font-bold hover:underline text-primary hover:text-white"
+                  className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-primary-light mt-4 transition-colors"
                 >
-                  <span>view_project</span>
-                  <span className="material-symbols-outlined !text-[14px]">arrow_outward</span>
+                  View Project →
                 </a>
               </div>
             </div>
           </div>
 
           {/* GitHub Stats Card */}
-          <div className="rounded-lg border p-6 flex flex-col justify-center gap-4 transition-colors border-zinc-800 bg-zinc-900/50 hover:border-primary/50">
+          <div className="bg-card-dark border border-border-subtle rounded-xl p-6 card-hover-glow">
             <div className="flex justify-between items-start">
-              <h4 className="font-mono text-sm uppercase tracking-wider text-slate-400">
+              <p className="text-xs font-mono text-text-muted-dark uppercase tracking-widest mb-2">
                 GitHub Contributions
-              </h4>
+              </p>
               <div className="flex gap-1">
                 {years.slice(0, 3).map(year => (
                   <button
                     key={year}
                     onClick={() => setSelectedYear(year)}
-                    className={`text-[10px] px-1.5 py-0.5 rounded font-mono transition-colors ${selectedYear === year
-                      ? 'bg-primary text-black font-bold'
-                      : 'bg-zinc-800 text-slate-400 hover:text-white'
-                      }`}
+                    className={`text-[10px] px-2 py-0.5 rounded font-mono transition-colors ${
+                      selectedYear === year
+                        ? 'bg-primary text-white font-bold'
+                        : 'bg-background-dark text-text-muted-dark hover:text-white'
+                    }`}
                   >
                     {year}
                   </button>
                 ))}
               </div>
             </div>
-            <div className="flex items-end gap-2">
+
+            <div className="flex items-end mt-4">
               <span className="text-4xl font-bold text-white">
                 {isLoading ? '...' : currentCount}
               </span>
-              <span className="text-sm mb-1.5 font-mono text-primary">
+              <span className="text-sm font-mono text-primary ml-2 mb-1">
                 contributions in {selectedYear}
               </span>
             </div>
-            <div className="h-2 w-full rounded-full overflow-hidden bg-zinc-800">
+
+            <div className="h-2 w-full rounded-full bg-background-dark mt-4">
               <div
-                className="h-full rounded-full transition-all duration-500 bg-primary shadow-[0_0_10px_rgba(57,255,20,0.5)]"
+                className="h-full rounded-full bg-primary transition-all duration-500"
                 style={{ width: `${Math.min(100, (currentCount / 500) * 100)}%` }}
-              ></div>
+              />
             </div>
-            <p className="text-[10px] font-mono text-slate-500">
+
+            <p className="text-[10px] font-mono text-text-muted-dark mt-2">
               Real-time data from @ts-31
             </p>
           </div>

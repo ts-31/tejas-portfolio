@@ -11,18 +11,25 @@ import Footer from '../components/Footer';
 
 export default function Home() {
     return (
-        <div className="min-h-screen flex flex-col transition-colors duration-300 bg-background-dark text-text-main-dark font-body overflow-x-hidden dark">
+        <div className="min-h-screen flex flex-col transition-colors duration-300 bg-background-dark text-text-main-dark font-body overflow-x-hidden">
             <Navbar />
 
             <main className="flex-grow flex flex-col items-center relative w-full pt-16">
-                {/* Background Grid Pattern */}
+                {/* Radial gradient hero glow */}
                 <div
-                    className="fixed inset-0 z-0 pointer-events-none opacity-20 transition-opacity duration-300"
+                    className="fixed inset-0 z-0 pointer-events-none"
                     style={{
-                        backgroundImage: `linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px)`,
-                        backgroundSize: '40px 40px'
+                        background: `radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99,102,241,0.15) 0%, transparent 70%)`
                     }}
-                ></div>
+                />
+                {/* Soft dot-grid background */}
+                <div
+                    className="fixed inset-0 z-0 pointer-events-none opacity-30"
+                    style={{
+                        backgroundImage: `radial-gradient(circle, #1E2340 1px, transparent 1px)`,
+                        backgroundSize: '32px 32px'
+                    }}
+                />
 
                 <Hero />
                 <Experience />

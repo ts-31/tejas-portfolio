@@ -1,73 +1,104 @@
-import React from 'react';
+export default function Experience() {
+  return (
+    <section id="experience" className="w-full max-w-7xl mx-auto px-4 pb-24 relative z-10">
+      <div className="w-full max-w-4xl mx-auto">
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-12 section-heading">
+          Experience
+        </h2>
 
-const Experience: React.FC = () => {
-    return (
-        <section className="w-full max-w-7xl mx-auto px-4 pb-24 relative z-10" id="experience">
-            <div className="w-full max-w-4xl mx-auto">
-                <div className="flex items-center gap-4 mb-10">
-                    <span className="text-2xl font-mono font-bold text-primary">./experience</span>
-                    <div className="h-px flex-grow bg-primary/30"></div>
-                </div>
+        {/* Timeline */}
+        <div className="relative pl-8 border-l-2 border-border-subtle space-y-10">
 
-                <div className="rounded-lg border p-6 md:p-8 flex flex-col md:flex-row gap-8 relative overflow-hidden group border-primary bg-primary/5">
-
-                    {/* Glow effect */}
-                    <div className="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 blur-[60px] rounded-full bg-primary/20"></div>
-
-                    {/* Icon / Date col */}
-                    <div className="flex flex-col items-center md:items-start flex-shrink-0 gap-4">
-                        <div className="w-20 h-20 rounded-xl border-2 flex items-center justify-center shadow-neon border-primary/50 bg-black">
-                            <span className="material-symbols-outlined text-[40px] text-primary">
-                                work
-                            </span>
-                        </div>
-
-                        <div className="text-sm font-mono font-bold tracking-tight text-center md:text-left text-slate-400">
-                            Dec 2025 — Present
-                        </div>
-                    </div>
-
-                    {/* Content Col */}
-                    <div className="flex flex-col gap-3 flex-grow text-center md:text-left z-10">
-                        <div className="inline-flex items-center gap-2 mx-auto md:mx-0">
-                            <span className="bg-primary text-black text-xs font-bold px-2 py-0.5 rounded-sm animate-pulse">CURRENT</span>
-                            <h3 className="text-2xl font-bold font-display text-white">
-                                Full Stack + Agentic AI Developer
-                            </h3>
-                        </div>
-                        <p className="text-lg font-semibold font-mono text-primary">
-                            @ FlyYourTech
-                        </p>
-
-                        <div className="mt-2 text-sm leading-relaxed space-y-3 text-slate-300">
-                            <p>
-                                Engineering production-focused applications by merging robust Full Stack development with advanced Agentic AI capabilities.
-                            </p>
-                            <ul className="list-none space-y-2 text-left mx-auto md:mx-0 max-w-2xl">
-                                <li className="flex items-start gap-2">
-                                    <span className="material-symbols-outlined !text-[18px] mt-0.5 text-primary">arrow_right</span>
-                                    <span><strong>Backend Architecture:</strong> Built production FastAPI backends with AWS CI/CD and Docker.</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="material-symbols-outlined !text-[18px] mt-0.5 text-primary">arrow_right</span>
-                                    <span><strong>AI & Data Integration:</strong> Integrated external AI APIs, PostgreSQL, and Qdrant vector search.</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="material-symbols-outlined !text-[18px] mt-0.5 text-primary">arrow_right</span>
-                                    <span><strong>Security & APIs:</strong> Implemented secure JWT/OAuth authentication, RBAC, and third-party API integrations.</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="material-symbols-outlined !text-[18px] mt-0.5 text-primary">arrow_right</span>
-                                    <span><strong>Full-Stack Features:</strong> Shipped responsive frontend dashboards and components using React, TypeScript, and Tailwind CSS.</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
+          {/* Entry 1 — FlyYourTech */}
+          <div className="relative">
+            <span className="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-primary border-2 border-background-dark" />
+            <div className="bg-card-dark border border-border-subtle rounded-xl p-6 md:p-8 card-hover-glow ml-4">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <span className="text-xs font-mono text-text-muted-dark uppercase tracking-widest">
+                  Dec 2025 — Present
+                </span>
+                <span className="text-xs font-bold bg-primary/10 text-primary border border-primary/30 px-2 py-0.5 rounded-full">
+                  Current
+                </span>
+              </div>
+              <h3 className="font-display text-xl md:text-2xl font-bold text-white mt-1">
+                Full Stack + Agentic AI Developer
+              </h3>
+              <p className="font-mono text-primary text-base font-semibold mt-1">
+                @ FlyYourTech
+              </p>
+              <p className="text-text-muted-dark text-sm leading-relaxed mt-3">
+                Engineering production-focused applications by merging robust Full Stack development with advanced Agentic AI capabilities.
+              </p>
+              <ul className="mt-3 space-y-1.5">
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">·</span>
+                  <span className="text-text-muted-dark text-sm">Backend Architecture: Built production FastAPI backends with AWS CI/CD and Docker.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">·</span>
+                  <span className="text-text-muted-dark text-sm">AI &amp; Data Integration: Integrated external AI APIs, PostgreSQL, and Qdrant vector search.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">·</span>
+                  <span className="text-text-muted-dark text-sm">Security &amp; APIs: Implemented secure JWT/OAuth authentication, RBAC, and third-party API integrations.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">·</span>
+                  <span className="text-text-muted-dark text-sm">Full-Stack Features: Shipped responsive frontend dashboards and components using React, TypeScript, and Tailwind CSS.</span>
+                </li>
+              </ul>
             </div>
-        </section>
-    );
-};
+          </div>
 
-export default Experience;
+          {/* Entry 2 — GSoC 2025 */}
+          <div className="relative">
+            <span className="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-primary border-2 border-background-dark" />
+            <div className="bg-card-dark border border-border-subtle rounded-xl p-6 md:p-8 card-hover-glow ml-4">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <span className="text-xs font-mono text-text-muted-dark uppercase tracking-widest">
+                  May 2025 — Aug 2025
+                </span>
+                <span className="text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                  GSoC 2025
+                </span>
+              </div>
+              <h3 className="font-display text-xl md:text-2xl font-bold text-white mt-1">
+                Open Source Contributor
+              </h3>
+              <p className="font-mono text-primary text-base font-semibold mt-1">
+                @ Google Summer of Code · OpenAFS
+              </p>
+              <p className="text-text-muted-dark text-sm leading-relaxed mt-3">
+                Built a production GNOME Shell extension for managing distributed file systems. Shipped features used by real Linux users.
+              </p>
+              <ul className="mt-3 space-y-1.5">
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">·</span>
+                  <span className="text-text-muted-dark text-sm">GNOME Shell Extension: Built using GJS with async, non-blocking UI for system-level operations.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">·</span>
+                  <span className="text-text-muted-dark text-sm">Live Features: Implemented live status indicators, notifications, and failure handling.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary mr-2">·</span>
+                  <span className="text-text-muted-dark text-sm">Open Source: Contributed to real users in academic and research environments.</span>
+                </li>
+              </ul>
+              <a
+                href="https://summerofcode.withgoogle.com/programs/2025/projects/dS7QYyMI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-mono text-primary hover:text-primary-light mt-3 transition-colors"
+              >
+                View Project →
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

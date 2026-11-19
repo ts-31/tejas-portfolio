@@ -9,34 +9,48 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                "primary": "#39FF14",
-                "background-dark": "#050505",
-                "terminal-dark": "#0c0c0c",
-                "card-dark": "#050505",
-                "text-main-dark": "#f1f5f9",
-                "text-muted-dark": "#94a3b8",
+                "primary": "#6366F1",
+                "primary-light": "#A5B4FC",
+                "background-dark": "#080B14",
+                "card-dark": "#0E1120",
+                "border-subtle": "#1E2340",
+                "text-main-dark": "#E2E8F0",
+                "text-muted-dark": "#8892B0",
             },
             fontFamily: {
-                "display": ["Space Grotesk", "sans-serif"],
+                "display": ["Syne", "sans-serif"],
                 "body": ["Space Grotesk", "sans-serif"],
                 "mono": ["JetBrains Mono", "monospace"],
-                "silkscreen": ["Silkscreen", "cursive"],
-                "switzer": ["Switzer", "sans-serif"],
             },
             boxShadow: {
-                "neon": "0 0 10px rgba(57, 255, 20, 0.4), 0 0 20px rgba(57, 255, 20, 0.2)",
-                "neon-hover": "0 0 15px rgba(57, 255, 20, 0.6), 0 0 30px rgba(57, 255, 20, 0.3)",
-                "neon-text": "0 0 8px rgba(57, 255, 20, 0.6)",
-                "card": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+                "glow": "0 4px 24px rgba(99,102,241,0.12)",
+                "glow-hover": "0 8px 32px rgba(99,102,241,0.2)",
+                "card": "0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.06)",
+                "card-hover": "0 8px 32px rgba(99,102,241,0.12), 0 2px 8px rgba(0,0,0,0.3)",
             },
             animation: {
-                'blink': 'blink 0.8s step-end infinite',
+                'fade-up': 'fadeUp 0.6s ease-out forwards',
+                'fade-in': 'fadeIn 0.5s ease-out forwards',
+                'float': 'float 4s ease-in-out infinite',
+                'slide-in-left': 'slideInLeft 0.6s ease-out forwards',
             },
             keyframes: {
-                blink: {
-                    '0%, 100%': { opacity: '1' },
-                    '50%': { opacity: '0' },
-                }
+                fadeUp: {
+                    '0%': { opacity: '0', transform: 'translateY(20px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-10px)' },
+                },
+                slideInLeft: {
+                    '0%': { opacity: '0', transform: 'translateX(-20px)' },
+                    '100%': { opacity: '1', transform: 'translateX(0)' },
+                },
             }
         },
     },
