@@ -2,19 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://tejas-portfolio-live.vercel.app'),
+    metadataBase: new URL('https://tejassdev.in'),
     title: "Tejas Sonawane | Full Stack Developer",
     description: "Portfolio of Tejas Sonawane - Full Stack Developer, AI Enthusiast, & GSoC 2025 Contributor",
     icons: {
         icon: [
-            { url: '/favicon.ico', sizes: 'any' },
-            { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+            { url: '/favicon.svg', type: 'image/svg+xml' },
         ],
-        apple: '/apple-icon.png',
+        apple: '/apple-icon',
     },
     openGraph: {
         type: 'website',
-        url: 'https://tejas-portfolio-live.vercel.app', // Update to intended Kuberns/Vercel standard URL
+        url: 'https://tejassdev.in', // Update to intended Kuberns/Vercel standard URL
         title: 'Tejas Sonawane | Open Source Developer',
         description: 'GSoC 2025 Contributor & Full Stack Developer Portfolio',
         images: [
